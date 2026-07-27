@@ -1,3 +1,5 @@
+![jr-accessibility Demo](demo/demo.jpg)
+
 # jr-accessibility
 
 Widget aksesibilitas **framework-agnostic** — bisa dipasang di project PHP apa pun, atau bahkan HTML statis tanpa backend sama sekali.
