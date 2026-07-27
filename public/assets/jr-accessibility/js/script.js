@@ -876,6 +876,14 @@
         setVirtualKeyboardShift(false);
 
         state = { ...DEFAULT_STATE };
+        
+        // Clear Google Translate cookies to reset language
+        if (typeof window.setCookieAll === 'function' && typeof window.clearCookieAll === 'function') {
+            window.clearCookieAll('googtrans');
+            const from = (window.CONFIG && window.norm) ? window.norm(window.CONFIG.pageLanguage) : 'en';
+            window.setCookieAll('googtrans', `/${from}/${from}`, 365);
+        }
+
         root.classList.remove(
             'jr-menu-open', 'jr-voice-mode', 'jr-reading-guide-active',
             'jr-monochrome', 'jr-high-contrast', 'jr-cursor-large',
@@ -893,6 +901,11 @@
         setGroupActive('[data-group="align"]', 'left');
 
         try { localStorage.removeItem(STORAGE_KEY); } catch { }
+
+        // Reload page to reset Google Translate rendering
+        if (typeof window.setCookieAll === 'function') {
+            window.location.reload();
+        }
     }
 
     /* ===== Event delegation (global) ===== */
@@ -957,3 +970,238 @@
 /* =====================================================================
    PART 3: MOBILE FAB TOGGLE (removed — using floating sidebar only)
    ===================================================================== */
+
+/* =====================================================================
+   PART 4: GOOGLE TRANSLATE WIDGET
+   ===================================================================== */
+(function() {
+    const CONFIG = {
+        pageLanguage: 'en',
+        included: 'en,id,ja,ko,es,fr,de',
+    };
+
+    const FLAG_MAP = {
+        'en': 'gb', 'id': 'id', 'ja': 'jp', 'ko': 'kr',
+        'es': 'es', 'fr': 'fr', 'de': 'de',
+    };
+
+    const norm = (s) => (s || '').trim().toLowerCase();
+
+    function computeFlagSrc(lang) {
+        const ln = norm(lang);
+        const cc = FLAG_MAP[ln] || FLAG_MAP[ln.split('-')[0]];
+        return cc ? `https://flagcdn.com/w40/${cc}.png` : '';
+    }
+
+    function getCookieAll(name) {
+        const target = name + '=';
+        const ca = document.cookie ? document.cookie.split(';') : [];
+        const hits = [];
+        for (let i = 0; i < ca.length; i++) {
+            const raw = ca[i].trim();
+            if (raw.indexOf(target) === 0) {
+                hits.push(decodeURIComponent(raw.substring(target.length)));
+            }
+        }
+        return hits;
+    }
+
+    function parseGoogTrans() {
+        const v = getCookieAll('googtrans').pop() || '';
+        const p = v.split('/').filter(Boolean);
+        return { src: p[0] || '', target: p[1] || '' };
+    }
+
+    function setCookieAll(name, value, days) {
+        const d = new Date();
+        d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+        const base = `${name}=${encodeURIComponent(value)};expires=${d.toUTCString()};path=/;SameSite=Lax`;
+        const host = window.location.hostname;
+        const variants = [null, host, '.' + host];
+        const parts = host.split('.');
+        if (parts.length > 2) variants.push('.' + parts.slice(-2).join('.'));
+        variants.forEach(dom => {
+            let cookie = base;
+            if (dom) cookie += `;domain=${dom}`;
+            document.cookie = cookie;
+        });
+    }
+
+    function clearCookieAll(name) {
+        setCookieAll(name, '', -1);
+    }
+
+    class GTW {
+        constructor() {
+            this.btn = document.getElementById('gtwBtn');
+            this.dropdown = document.getElementById('gtwDropdown');
+            this.flagImg = document.getElementById('gtwFlag');
+            this.items = Array.from(document.querySelectorAll('.gtw-item'));
+            this.currentLang = norm(CONFIG.pageLanguage);
+            this.isOpen = false;
+            this.isMobile = window.innerWidth <= 768;
+
+            this.injectCssHider();
+            this.initFromPref();
+            this.bind();
+            this.loadGoogleTranslate();
+        }
+
+        injectCssHider() {
+            // Already in style.css
+        }
+
+        getPreferredLang() {
+            const fromCookie = norm(parseGoogTrans().target);
+            if (fromCookie) return fromCookie;
+            const htmlLang = norm(document.documentElement.getAttribute('lang') || '');
+            if (htmlLang && FLAG_MAP[htmlLang]) return htmlLang;
+            return norm(CONFIG.pageLanguage);
+        }
+
+        initFromPref() {
+            const pref = this.getPreferredLang();
+            this.updateFlagUI(pref);
+            document.documentElement.setAttribute('lang', pref);
+        }
+
+        bind() {
+            if (this.btn) {
+                this.btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    this.toggle();
+                });
+            }
+            document.addEventListener('click', () => this.close());
+            if (this.dropdown) this.dropdown.addEventListener('click', (e) => e.stopPropagation());
+
+            window.addEventListener('resize', () => {
+                const wasMobile = this.isMobile;
+                this.isMobile = window.innerWidth <= 768;
+                if (wasMobile !== this.isMobile && this.isOpen) this.close();
+            });
+
+            this.items.forEach(item => {
+                const act = (e) => {
+                    e.stopPropagation();
+                    const lang = norm(item.getAttribute('data-lang'));
+                    if (lang === '__reset__') {
+                        this.resetTranslation();
+                        return;
+                    }
+                    this.select(lang);
+                };
+                item.addEventListener('click', act);
+                item.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') act(e);
+                });
+            });
+        }
+
+        toggle() { this.isOpen ? this.close() : this.open(); }
+        open() {
+            this.isOpen = true;
+            if (this.btn) this.btn.classList.add('active');
+            if (this.dropdown) this.dropdown.classList.add('show');
+        }
+        close() {
+            this.isOpen = false;
+            if (this.btn) this.btn.classList.remove('active');
+            if (this.dropdown) this.dropdown.classList.remove('show');
+        }
+
+        updateFlagUI(lang) {
+            const ln = norm(lang);
+            this.currentLang = ln;
+
+            let src = '';
+            let name = ln;
+            const item = this.items.find(el => norm(el.getAttribute('data-lang')) === ln);
+            if (item) {
+                name = item.getAttribute('data-name') || ln;
+                const img = item.querySelector('img');
+                if (img && img.src) src = img.src;
+            }
+            if (!src) src = computeFlagSrc(ln);
+
+            if (this.flagImg && src) this.flagImg.src = src;
+            if (this.flagImg) this.flagImg.alt = name;
+            if (this.btn) this.btn.setAttribute('aria-label', `Select language (current: ${name})`);
+
+            const labelEl = document.getElementById('gtwLabel');
+            if (labelEl) labelEl.textContent = name;
+
+            this.items.forEach(el => {
+                const active = norm(el.getAttribute('data-lang')) === ln;
+                el.classList.toggle('is-active', active);
+                el.setAttribute('aria-selected', active ? 'true' : 'false');
+            });
+        }
+
+        select(lang) {
+            if (!lang || lang === this.currentLang) {
+                this.close();
+                return;
+            }
+            this.updateFlagUI(lang);
+            this.close();
+            this.applyGoogleTranslate(lang);
+        }
+
+        applyGoogleTranslate(target) {
+            const src = norm(CONFIG.pageLanguage);
+            setCookieAll('googtrans', `/${src}/${target}`, 365);
+            document.documentElement.setAttribute('lang', target);
+            window.location.reload();
+        }
+
+        resetTranslation() {
+            const from = norm(CONFIG.pageLanguage);
+            clearCookieAll('googtrans');
+            setCookieAll('googtrans', `/${from}/${from}`, 365);
+            document.documentElement.setAttribute('lang', from);
+            window.location.reload();
+        }
+
+        loadGoogleTranslate() {
+            const hiddenDiv = document.createElement('div');
+            hiddenDiv.id = 'google_translate_element';
+            hiddenDiv.style.display = 'none';
+            document.body.appendChild(hiddenDiv);
+
+            window.googleTranslateElementInit = () => {
+                new google.translate.TranslateElement({
+                    pageLanguage: CONFIG.pageLanguage,
+                    includedLanguages: CONFIG.included,
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                    autoDisplay: false
+                }, 'google_translate_element');
+
+                const eff = parseGoogTrans().target;
+                if (eff) {
+                    this.updateFlagUI(eff);
+                    document.documentElement.setAttribute('lang', eff);
+                }
+            };
+
+            if (!document.querySelector('script[data-gtw="gtelement"]')) {
+                const s = document.createElement('script');
+                s.setAttribute('data-gtw', 'gtelement');
+                s.setAttribute('data-cfasync', 'false');
+                s.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+                document.head.appendChild(s);
+            }
+        }
+    }
+
+    if (document.querySelector('#gtwBtn')) {
+        document.addEventListener('DOMContentLoaded', () => {
+            window.__gtw = new GTW();
+            // Expose helpers for reset functionality
+            window.setCookieAll = setCookieAll;
+            window.clearCookieAll = clearCookieAll;
+            window.CONFIG = CONFIG;
+            window.norm = norm;
+        });
+    }
+})();

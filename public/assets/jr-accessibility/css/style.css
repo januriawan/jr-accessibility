@@ -1,8 +1,172 @@
 /* =====================================================================
    jr-accessibility - style.css
    Combined stylesheet: accessibility menu + floating sidebar
-   + FAB mobile.
+   + Google Translate widget.
    ===================================================================== */
+
+/* =====================================================================
+   0. GOOGLE TRANSLATE WIDGET
+   ===================================================================== */
+.gtw-container {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+#gtwBtn {
+  background: #fff;
+  border: 1px solid rgba(16, 83, 213, 0.2);
+  border-radius: 0.85rem;
+  padding: 0.7rem 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  color: #2c3e50;
+  width: 100%;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: left;
+}
+
+#gtwBtn:hover {
+  background: rgba(16, 83, 213, 0.08);
+  border-color: rgba(16, 83, 213, 0.3);
+}
+
+#gtwBtn.active {
+  background: rgba(16, 83, 213, 0.12);
+  border-color: #1053d5;
+  color: #1053d5;
+}
+
+#gtwFlag {
+  width: 24px;
+  height: 16px;
+  border-radius: 2px;
+  object-fit: cover;
+  flex: 0 0 auto;
+}
+
+#gtwLabel {
+  flex: 1;
+}
+
+.gtw-chevron {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+  flex: 0 0 auto;
+  margin-left: auto;
+  color: #5d6d8a;
+}
+
+#gtwBtn.active .gtw-chevron {
+  transform: rotate(180deg);
+}
+
+#gtwDropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid rgba(16, 83, 213, 0.1);
+  border-radius: 0.85rem;
+  padding: 0.5rem;
+  box-shadow: 0 24px 60px rgba(15, 32, 62, 0.22);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.25s ease;
+  z-index: 50;
+}
+
+#gtwDropdown.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.gtw-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: 0.55rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #2c3e50;
+  font-size: 0.85rem;
+}
+
+.gtw-item:hover {
+  background: rgba(16, 83, 213, 0.1);
+  color: #1053d5;
+}
+
+.gtw-item[aria-selected="true"] {
+  background: rgba(16, 83, 213, 0.15);
+  color: #1053d5;
+  font-weight: 600;
+}
+
+.gtw-item img {
+  width: 22px;
+  height: 15px;
+  border-radius: 2px;
+  object-fit: cover;
+  flex: 0 0 auto;
+}
+
+.gtw-reset {
+  border-top: 1px solid rgba(16, 83, 213, 0.1);
+  margin-top: 0.4rem;
+  padding-top: 0.4rem;
+  color: #e74c3c;
+}
+
+.gtw-reset:hover {
+  background: rgba(231, 76, 60, 0.12);
+  color: #c0392b;
+}
+
+.gtw-reset span {
+  margin-left: 0;
+}
+
+#gtwOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+#gtwOverlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Hide Google Translate default UI */
+.goog-te-banner-frame { display: none !important; }
+.goog-te-gadget { display: none !important; }
+#goog-gt-tt, .goog-tooltip, .goog-tooltip:hover { display: none !important; }
+.goog-text-highlight { background: transparent !important; box-shadow: none !important; }
+body { top: 0 !important; }
+.goog-logo-link, .goog-te-balloon-frame { display: none !important; }
+.VIpgJd-ZVi9od-ORHb-OEVmcd,
+.VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q { display: none !important; }
+
+@media (max-width: 575.98px) {
+  #gtwDropdown {
+    max-height: 50vh;
+    overflow-y: auto;
+  }
+}
 
 /* =====================================================================
    1. ACCESSIBILITY MENU (drawer, cards, toggles, magnifier, keyboard...)

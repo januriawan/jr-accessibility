@@ -67,8 +67,8 @@
                     </div>
                     <div class="col-md-4">
                         <div class="demo-card">
-                            <h5><i class="bi bi-cursor text-primary me-2"></i>Enlarge Cursor</h5>
-                            <p class="text-muted mb-0">Use an oversized pointer so the cursor is easier to spot on screen.</p>
+                            <h5><i class="bi bi-translate text-primary me-2"></i>Translate Page</h5>
+                            <p class="text-muted mb-0">Translate the entire page into your preferred language via Google Translate.</p>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -121,6 +121,61 @@
             <button class="jr-close-btn jr-clickable" data-action="closeMenu" aria-label="Close accessibility menu"><i class="bi bi-x"></i></button>
         </div>
         <div class="jr-menu-content">
+            <!-- Google Translate Widget -->
+            <section class="jr-menu-card">
+                <div class="jr-menu-card__icon"><i class="bi bi-translate"></i></div>
+                <h3 class="jr-menu-card__title">Translate Page</h3>
+                <p class="jr-menu-card__note">Translate the entire page into your preferred language using Google Translate.</p>
+                <div class="jr-menu-card__control">
+                    <div class="gtw-container">
+                        <button id="gtwBtn" aria-label="Select language (current: English)">
+                            <img id="gtwFlag" src="https://flagcdn.com/w40/gb.png" alt="English">
+                            <span id="gtwLabel">English</span>
+                            <svg class="gtw-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+
+                        <div id="gtwDropdown">
+                            <div class="gtw-item" data-lang="en" data-name="English" tabindex="0" aria-selected="true">
+                                <img src="https://flagcdn.com/w40/gb.png" alt="English">
+                                <span>English</span>
+                            </div>
+                            <div class="gtw-item" data-lang="id" data-name="Indonesian" tabindex="0" aria-selected="false">
+                                <img src="https://flagcdn.com/w40/id.png" alt="Indonesian">
+                                <span>Indonesian</span>
+                            </div>
+                            <div class="gtw-item" data-lang="ja" data-name="Japanese" tabindex="0" aria-selected="false">
+                                <img src="https://flagcdn.com/w40/jp.png" alt="Japanese">
+                                <span>Japanese</span>
+                            </div>
+                            <div class="gtw-item" data-lang="ko" data-name="Korean" tabindex="0" aria-selected="false">
+                                <img src="https://flagcdn.com/w40/kr.png" alt="Korean">
+                                <span>Korean</span>
+                            </div>
+                            <div class="gtw-item" data-lang="es" data-name="Spanish" tabindex="0" aria-selected="false">
+                                <img src="https://flagcdn.com/w40/es.png" alt="Spanish">
+                                <span>Spanish</span>
+                            </div>
+                            <div class="gtw-item" data-lang="fr" data-name="French" tabindex="0" aria-selected="false">
+                                <img src="https://flagcdn.com/w40/fr.png" alt="French">
+                                <span>French</span>
+                            </div>
+                            <div class="gtw-item" data-lang="de" data-name="German" tabindex="0" aria-selected="false">
+                                <img src="https://flagcdn.com/w40/de.png" alt="German">
+                                <span>German</span>
+                            </div>
+                            <div class="gtw-item gtw-reset" data-lang="__reset__" data-name="Reset" tabindex="0">
+                                <svg width="20" height="14" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" />
+                                </svg>
+                                <span>Reset Translation</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <div class="jr-menu-grid">
                 <!-- Voice Mode -->
                 <section class="jr-menu-card">
@@ -382,6 +437,5 @@
     <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
     <!-- jr-accessibility JS -->
     <script src="../public/assets/jr-accessibility/js/script.js"></script>
-
 </body>
 </html>
