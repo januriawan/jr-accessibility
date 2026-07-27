@@ -644,8 +644,8 @@ body.jr-monochrome .jr-magnifier {
    Catatan: path cursor diatur via --jr-big-cursor di :root.
    Sesuaikan path sesuai lokasi public/ di project tujuan. */
 :root {
-    --jr-big-cursor: url("/assets/jr-accessibility/cursor/big-cursor.png") 2 2, auto;
-    --jr-big-pointer: url("/assets/jr-accessibility/cursor/big-cursor.png") 2 2, pointer;
+    --jr-big-cursor: url("../cursor/big-cursor.png") 2 2, auto;
+    --jr-big-pointer: url("../cursor/big-cursor.png") 2 2, pointer;
 }
 
 .jr-cursor-large { cursor: var(--jr-big-cursor) }
