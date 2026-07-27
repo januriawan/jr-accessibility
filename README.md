@@ -1,4 +1,5 @@
 ![jr-accessibility Demo](demo/demo.jpg)
+![jr-accessibility Demo 2](demo/demo2.jpg)
 
 # jr-accessibility
 
@@ -100,20 +101,6 @@ Buka `demo/index.html` langsung di browser untuk lihat demo lengkap.
 | **Hide Images** | Sembunyikan gambar |
 | **Virtual Keyboard** | Keyboard di layar |
 | **Translate Page** | Terjemahkan halaman ke bahasa pilihan via Google Translate |
-
----
-
-## GitHub Pages
-
-Untuk deploy demo ke GitHub Pages:
-
-1. **Push repository** ke GitHub
-2. Buka **Settings → Pages** di repository
-3. Pilih **Source**: `Deploy from a branch`
-4. Pilih branch `master` dan folder `/` (root)
-5. Akses demo di: `https://<username>.github.io/<repo>/demo/`
-
-Path aset di `demo/index.html` sudah pakai path relatif (`../public/assets/...`) yang otomatis bekerja di GitHub Pages tanpa perubahan.
 
 ---
 
