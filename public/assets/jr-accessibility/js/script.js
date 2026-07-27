@@ -955,33 +955,5 @@
 })();
 
 /* =====================================================================
-   PART 3: MOBILE FAB TOGGLE
+   PART 3: MOBILE FAB TOGGLE (removed — using floating sidebar only)
    ===================================================================== */
-(function () {
-    const wrap = document.getElementById('fabMobile');
-    const btn = document.getElementById('fabToggle');
-    if (!wrap || !btn) return;
-
-    function closeFab() {
-        wrap.classList.remove('open');
-        wrap.setAttribute('aria-expanded', 'false');
-    }
-
-    function openFab() {
-        wrap.classList.add('open');
-        wrap.setAttribute('aria-expanded', 'true');
-    }
-
-    btn.addEventListener('click', e => {
-        e.stopPropagation();
-        wrap.classList.toggle('open');
-        wrap.setAttribute('aria-expanded', wrap.classList.contains('open') ? 'true' : 'false');
-    });
-
-    document.addEventListener('click', (e) => {
-        if (!wrap.contains(e.target)) closeFab();
-    });
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeFab();
-    });
-})();

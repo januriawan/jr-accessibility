@@ -104,30 +104,12 @@
         <div class="jr-magnifier-inner"></div>
     </div>
 
-    <!-- Floating Sidebar (desktop, shown above 1200px) -->
+    <!-- Floating Sidebar (always shown) -->
     <nav class="floating-right">
         <a class="fl-btn jr-clickable" data-action="togglejrMenu" aria-label="Open accessibility menu" href="#">
             <i class="bi bi-person-wheelchair"></i><span class="label">Accessibility</span>
         </a>
     </nav>
-
-    <!-- Mobile FAB (shown below 1200px) -->
-    <div class="fab-mobile" id="fabMobile" aria-expanded="false">
-        <button class="fab-btn" id="fabToggle" type="button" aria-label="Toggle features menu">
-            <i class="bi bi-grid-3x3-gap-fill"></i> Features
-        </button>
-        <div class="fab-sheet rounded-4">
-            <a href="#" data-action="togglejrMenu" class="fab-item jr-clickable row g-2 align-items-center text-reset text-decoration-none" aria-label="Open accessibility menu">
-                <div class="col-3 d-flex justify-content-center">
-                    <div class="fab-ico blue"><i class="bi bi-person-wheelchair"></i></div>
-                </div>
-                <div class="col-9">
-                    <p class="fab-title mb-1">Accessibility</p>
-                    <p class="fab-desc mb-0">Adjust text, contrast, and navigation</p>
-                </div>
-            </a>
-        </div>
-    </div>
 
     <!-- Overlay (shown when accessibility menu is open) -->
     <div class="jr-overlay" data-action="closeMenu" aria-hidden="true"></div>
