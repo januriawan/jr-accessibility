@@ -6,8 +6,8 @@ Widget aksesibilitas **framework-agnostic** — bisa dipasang di project PHP apa
 
 Modul ini menyediakan:
 - **Accessibility Menu** (drawer) — voice mode, ukuran teks, line height, spacing, alignment, bold, reading guide, monochrome, high contrast, large cursor, magnifier, pause animations, hide images, virtual keyboard
-- **Floating Sidebar** (desktop) — tombol akses cepat
-- **Mobile FAB** — floating action button untuk mobile
+- **Floating Sidebar** — tombol akses cepat
+- **Translate Page** — integrasi Google Translate
 
 ---
 
@@ -17,16 +17,14 @@ Modul ini menyediakan:
 jr-accessibility/
 ├── README.md                          ← File ini
 ├── demo/
-│   └── floating.html                  ← Demo pure HTML, buka di browser langsung jalan
+│   ├── demo.jpg
+│   └── index.html                     ← Demo lengkap, buka di browser langsung jalan
 └── public/
     └── assets/
         └── jr-accessibility/
-            ├── css/
-            │   └── style.css          ← Semua CSS (aksesibilitas + floating sidebar + fab)
-            ├── js/
-            │   └── script.js          ← Semua JS (engine + fab)
-            └── cursor/
-                └── big-cursor.png     ← Gambar cursor untuk "Enlarge Cursor"
+            ├── css/style.css          ← Semua CSS (aksesibilitas + floating sidebar)
+            ├── js/script.js           ← Semua JS (engine + translate)
+            └── cursor/big-cursor.png  ← Gambar cursor untuk "Enlarge Cursor"
 ```
 
 ---
@@ -73,13 +71,13 @@ Di file HTML kamu, tambahkan di `<head>` dan sebelum `</body>`:
 
 ### Langkah 3: Copy Widget HTML
 
-Copy blok HTML widget dari file `demo/floating.html` (bagian mulai dari `<div class="sstc-reading-guide">` sampai sebelum `<!-- Scripts -->`) ke dalam `<body>` kamu.
+Copy blok HTML widget dari file `demo/index.html` (bagian mulai dari `<div class="jr-reading-guide">` sampai sebelum `<!-- Scripts -->`) ke dalam `<body>` kamu.
 
-Wrap konten utama kamu dengan `<div class="sstc-page-root">...</div>` agar fitur seperti high contrast dan hide images bekerja dengan benar.
+Wrap konten utama kamu dengan `<div class="jr-page-root">...</div>` agar fitur seperti high contrast dan hide images bekerja dengan benar.
 
 ### Langkah 4: Test
 
-Buka `demo/floating.html` langsung di browser untuk lihat demo lengkap.
+Buka `demo/index.html` langsung di browser untuk lihat demo lengkap.
 
 ---
 
@@ -101,6 +99,21 @@ Buka `demo/floating.html` langsung di browser untuk lihat demo lengkap.
 | **Pause Animations** | Hentikan animasi halaman |
 | **Hide Images** | Sembunyikan gambar |
 | **Virtual Keyboard** | Keyboard di layar |
+| **Translate Page** | Terjemahkan halaman ke bahasa pilihan via Google Translate |
+
+---
+
+## GitHub Pages
+
+Untuk deploy demo ke GitHub Pages:
+
+1. **Push repository** ke GitHub
+2. Buka **Settings → Pages** di repository
+3. Pilih **Source**: `Deploy from a branch`
+4. Pilih branch `master` dan folder `/` (root)
+5. Akses demo di: `https://<username>.github.io/<repo>/demo/`
+
+Path aset di `demo/index.html` sudah pakai path relatif (`../public/assets/...`) yang otomatis bekerja di GitHub Pages tanpa perubahan.
 
 ---
 
@@ -108,4 +121,5 @@ Buka `demo/floating.html` langsung di browser untuk lihat demo lengkap.
 
 - **Bootstrap Icons** wajib disertakan agar ikon muncul.
 - **ResponsiveVoice.js** bersifat opsional — hanya diperlukan jika fitur Voice Mode digunakan.
+- **Google Translate** membutuhkan koneksi internet (flag diambil dari flagcdn.com, engine dari Google).
 - Widget ini **tidak memerlukan backend atau database** — semua fitur berjalan 100% di sisi klien.
