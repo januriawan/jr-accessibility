@@ -21,13 +21,13 @@
 (function () {
     const root = document.body;
     const scope = document;
-    const container = document.querySelector('.sstc-page-root') || document;
+    const container = document.querySelector('.jr-page-root') || document;
 
     const MAGNIFIER_SIZE = 220;
     const MAGNIFIER_SCALE = 1.75;
 
     /* ===== Persistence ===== */
-    const STORAGE_KEY = 'sstcAccState';
+    const STORAGE_KEY = 'jrAccState';
     const DEFAULT_STATE = {
         voiceMode: false,
         textSize: 100,
@@ -71,7 +71,7 @@
 
     const EDITABLE_INPUT_TYPES = new Set(['text', 'search', 'email', 'url', 'tel', 'password', 'number', 'date', 'time', 'datetime-local']);
     const NON_TEXT_INPUT_TYPES = new Set(['button', 'submit', 'reset', 'checkbox', 'radio', 'hidden', 'color', 'file', 'range']);
-    let virtualKeyboardEl = q('#sstcVirtualKeyboard');
+    let virtualKeyboardEl = q('#jrVirtualKeyboard');
     let virtualKeyboardShift = false;
     let lastEditableElement = null;
 
@@ -94,7 +94,7 @@
         } catch { return false; }
     }
     function inHeaderFooter(el) {
-        return !!el.closest('.sstc-site-header, .sstc-site-footer');
+        return !!el.closest('.jr-site-header, .jr-site-footer');
     }
 
     function hideAllImagesAndBackgrounds() {
@@ -305,7 +305,7 @@
     function setVirtualKeyboardShift(value) {
         virtualKeyboardShift = !!value;
         if (virtualKeyboardEl) {
-            virtualKeyboardEl.classList.toggle('sstc-virtual-keyboard--shift', virtualKeyboardShift);
+            virtualKeyboardEl.classList.toggle('jr-virtual-keyboard--shift', virtualKeyboardShift);
         }
         updateVirtualKeyboardShiftVisual();
     }
@@ -314,14 +314,14 @@
         if (!virtualKeyboardEl) return;
         virtualKeyboardEl.classList.toggle('is-visible', isActive);
         virtualKeyboardEl.setAttribute('aria-hidden', isActive ? 'false' : 'true');
-        root.classList.toggle('sstc-virtual-keyboard-open', isActive);
+        root.classList.toggle('jr-virtual-keyboard-open', isActive);
         if (isActive) {
             updateVirtualKeyboardShiftVisual();
         }
     }
 
     if (virtualKeyboardEl) {
-        const isKeyboardControl = (target) => !!(target && (target.closest('.sstc-virtual-keyboard__key') || target.closest('.sstc-virtual-keyboard__action')));
+        const isKeyboardControl = (target) => !!(target && (target.closest('.jr-virtual-keyboard__key') || target.closest('.jr-virtual-keyboard__action')));
         const handlePointerDown = (event) => {
             if (!isKeyboardControl(event.target)) return;
             if (event.pointerType === 'mouse') { event.preventDefault(); }
@@ -348,12 +348,12 @@
     if (virtualKeyboardEl) updateVirtualKeyboardShiftVisual();
 
     /* ===== Magnifier Setup ===== */
-    let magnifierEl = root.querySelector('.sstc-magnifier');
+    let magnifierEl = root.querySelector('.jr-magnifier');
     if (magnifierEl) {
         magnifierEl.setAttribute('aria-hidden', 'true');
         magnifierEl.setAttribute('data-acc-ignore-magnifier', '1');
     }
-    let magnifierInner = magnifierEl ? magnifierEl.querySelector('.sstc-magnifier-inner') : null;
+    let magnifierInner = magnifierEl ? magnifierEl.querySelector('.jr-magnifier-inner') : null;
     let magnifierSnapshot = null;
     let magnifierResizeObserver = null;
     let magnifierMutationObserver = null;
@@ -365,12 +365,12 @@
         if (magnifierEl && magnifierInner) return true;
 
         magnifierEl = document.createElement('div');
-        magnifierEl.className = 'sstc-magnifier';
+        magnifierEl.className = 'jr-magnifier';
         magnifierEl.setAttribute('aria-hidden', 'true');
         magnifierEl.setAttribute('data-acc-ignore-magnifier', '1');
 
         magnifierInner = document.createElement('div');
-        magnifierInner.className = 'sstc-magnifier-inner';
+        magnifierInner.className = 'jr-magnifier-inner';
         magnifierEl.appendChild(magnifierInner);
 
         root.appendChild(magnifierEl);
@@ -380,7 +380,7 @@
     function sanitizeForMagnifier(node) {
         if (!node) return;
         node.querySelectorAll('script').forEach(s => s.remove());
-        node.querySelectorAll('.sstc-magnifier').forEach(s => s.remove());
+        node.querySelectorAll('.jr-magnifier').forEach(s => s.remove());
         node.querySelectorAll('[data-acc-ignore-magnifier="1"]').forEach(s => s.remove());
     }
 
@@ -391,7 +391,7 @@
         const source = container === document ? (document.body || document.documentElement) : container;
         const clone = source.cloneNode(true);
         sanitizeForMagnifier(clone);
-        clone.classList.add('sstc-magnifier-snapshot');
+        clone.classList.add('jr-magnifier-snapshot');
         clone.setAttribute('aria-hidden', 'true');
 
         magnifierSnapshot = clone;
@@ -437,7 +437,7 @@
     }
 
     function shouldIgnoreMagnifier(target) {
-        return !target || !!target.closest('.sstc-accessibility-menu, .sstc-magnifier, [data-acc-ignore-magnifier="1"]');
+        return !target || !!target.closest('.jr-accessibility-menu, .jr-magnifier, [data-acc-ignore-magnifier="1"]');
     }
 
     function onMagnifierMove(e) {
@@ -475,7 +475,7 @@
         if (magnifierActive) return;
         if (!ensureMagnifierElements()) return;
         rebuildMagnifierSnapshot();
-        magnifierEl.classList.add('sstc-active');
+        magnifierEl.classList.add('jr-active');
         document.addEventListener('mousemove', onMagnifierMove);
         document.addEventListener('mouseleave', onMagnifierLeave, true);
         window.addEventListener('scroll', onMagnifierScroll, true);
@@ -510,7 +510,7 @@
             magnifierMutationObserver = null;
         }
         hideMagnifier();
-        if (magnifierEl) magnifierEl.classList.remove('sstc-active');
+        if (magnifierEl) magnifierEl.classList.remove('jr-active');
         if (magnifierInner) magnifierInner.innerHTML = '';
         magnifierSnapshot = null;
         lastMagnifierPoint = null;
@@ -519,17 +519,17 @@
 
     /* ===== UI Helpers ===== */
     function setToggle(el, isActive) {
-        if (!el) return; el.classList.toggle('sstc-active', !!isActive);
+        if (!el) return; el.classList.toggle('jr-active', !!isActive);
     }
     function setGroupActive(groupSel, value) {
         qa(groupSel + ' [data-action]').forEach(b => {
             const v = b.getAttribute('data-value');
-            b.classList.toggle('sstc-active', v === value);
+            b.classList.toggle('jr-active', v === value);
         });
     }
 
     /* ====== Voice via Cursor (Hover Proximity) ====== */
-    const TTS_SELECTOR = 'h1, h2, h3, h4, h5, h6, p, li, blockquote, .sstc-tts';
+    const TTS_SELECTOR = 'h1, h2, h3, h4, h5, h6, p, li, blockquote, .jr-tts';
     const HOVER_DELAY_MS = 350;
     const MIN_TEXT_LEN = 24;
     const PROXIMITY_PAD = 8;
@@ -546,7 +546,7 @@
     function nearestSpeakableFromPoint(x, y) {
         const el = document.elementFromPoint(x, y);
         if (!el) return null;
-        if (el.closest('.sstc-site-header, .sstc-site-footer')) return null;
+        if (el.closest('.jr-site-header, .jr-site-footer')) return null;
 
         let blk = el.closest(TTS_SELECTOR);
         if (!blk) return null;
@@ -561,10 +561,10 @@
     }
 
     function addHoverHighlight(el) {
-        if (!el) return; el.classList.add('sstc-voice-hover');
+        if (!el) return; el.classList.add('jr-voice-hover');
     }
     function removeHoverHighlight(el) {
-        if (!el) return; el.classList.remove('sstc-voice-hover'); el.classList.remove('sstc-voice-speaking');
+        if (!el) return; el.classList.remove('jr-voice-hover'); el.classList.remove('jr-voice-speaking');
     }
 
     function speakParagraph(el) {
@@ -576,11 +576,11 @@
 
         responsiveVoice.cancel();
         lastSpokenEl = el;
-        el.classList.add('sstc-voice-speaking');
+        el.classList.add('jr-voice-speaking');
 
         responsiveVoice.speak(txt, "UK English Female", {
             rate: 0.9, pitch: 1, volume: 0.85,
-            onend: () => el && el.classList.remove('sstc-voice-speaking')
+            onend: () => el && el.classList.remove('jr-voice-speaking')
         });
     }
 
@@ -617,15 +617,15 @@
 
     /* ===== Apply state ke UI (load & berubah) ===== */
     function applyState({ initial = false } = {}) {
-        root.classList.toggle('sstc-menu-open', root.classList.contains('sstc-menu-open'));
-        root.classList.toggle('sstc-voice-mode', state.voiceMode);
-        root.classList.toggle('sstc-reading-guide-active', state.readingGuide);
-        root.classList.toggle('sstc-monochrome', state.monochrome);
-        root.classList.toggle('sstc-high-contrast', state.highContrast);
-        root.classList.toggle('sstc-cursor-large', state.largeCursor);
-        root.classList.toggle('sstc-animations-disabled', state.animationsDisabled);
-        root.classList.toggle('sstc-hide-images', state.hideImages);
-        root.classList.toggle('sstc-magnify-mode', state.magnifyMode);
+        root.classList.toggle('jr-menu-open', root.classList.contains('jr-menu-open'));
+        root.classList.toggle('jr-voice-mode', state.voiceMode);
+        root.classList.toggle('jr-reading-guide-active', state.readingGuide);
+        root.classList.toggle('jr-monochrome', state.monochrome);
+        root.classList.toggle('jr-high-contrast', state.highContrast);
+        root.classList.toggle('jr-cursor-large', state.largeCursor);
+        root.classList.toggle('jr-animations-disabled', state.animationsDisabled);
+        root.classList.toggle('jr-hide-images', state.hideImages);
+        root.classList.toggle('jr-magnify-mode', state.magnifyMode);
 
         root.style.fontSize = state.textSize + '%';
         root.style.lineHeight = state.lineHeight;
@@ -640,7 +640,7 @@
         const lv = q('[data-role="lineHeightValue"]'); if (lv) lv.textContent = state.lineHeight.toFixed(1) + 'x';
         setGroupActive('[data-group="spacing"]', state.textSpacing);
         setGroupActive('[data-group="align"]', state.textAlign);
-        const box = q('.sstc-page-root'); if (box) box.style.textAlign = state.textAlign;
+        const box = q('.jr-page-root'); if (box) box.style.textAlign = state.textAlign;
 
         setToggle(q('[data-action="toggleVoice"]'), state.voiceMode);
         setToggle(q('[data-action="toggleReadingGuide"]'), state.readingGuide);
@@ -677,13 +677,13 @@
     }
 
     /* ===== Features (global) ===== */
-    function togglesstcMenu(open) {
-        root.classList.toggle('sstc-menu-open', open === undefined ? !root.classList.contains('sstc-menu-open') : !!open);
+    function togglejrMenu(open) {
+        root.classList.toggle('jr-menu-open', open === undefined ? !root.classList.contains('jr-menu-open') : !!open);
     }
 
     function toggleVoice() {
         state.voiceMode = !state.voiceMode;
-        root.classList.toggle('sstc-voice-mode', state.voiceMode);
+        root.classList.toggle('jr-voice-mode', state.voiceMode);
         setToggle(q('[data-action="toggleVoice"]'), state.voiceMode);
 
         if (state.voiceMode) {
@@ -730,7 +730,7 @@
     function align(val) {
         state.textAlign = val;
         setGroupActive('[data-group="align"]', val);
-        const box = q('.sstc-page-root'); if (box) box.style.textAlign = val;
+        const box = q('.jr-page-root'); if (box) box.style.textAlign = val;
         saveState();
     }
     function toggleBold() {
@@ -741,32 +741,32 @@
     }
     function toggleReadingGuide() {
         state.readingGuide = !state.readingGuide;
-        root.classList.toggle('sstc-reading-guide-active', state.readingGuide);
+        root.classList.toggle('jr-reading-guide-active', state.readingGuide);
         setToggle(q('[data-action="toggleReadingGuide"]'), state.readingGuide);
         if (state.readingGuide) { scope.addEventListener('mousemove', moveGuide); }
         else { scope.removeEventListener('mousemove', moveGuide); }
         saveState();
     }
     function moveGuide(e) {
-        const guide = q('.sstc-reading-guide');
+        const guide = q('.jr-reading-guide');
         if (!guide) return;
         guide.style.top = (e.clientY - 1) + 'px';
     }
     function toggleMonochrome() {
         state.monochrome = !state.monochrome;
-        root.classList.toggle('sstc-monochrome', state.monochrome);
+        root.classList.toggle('jr-monochrome', state.monochrome);
         setToggle(q('[data-action="toggleMonochrome"]'), state.monochrome);
         saveState();
     }
     function toggleHighContrast() {
         state.highContrast = !state.highContrast;
-        root.classList.toggle('sstc-high-contrast', state.highContrast);
+        root.classList.toggle('jr-high-contrast', state.highContrast);
         setToggle(q('[data-action="toggleHighContrast"]'), state.highContrast);
         saveState();
     }
     function toggleCursor() {
         state.largeCursor = !state.largeCursor;
-        root.classList.toggle('sstc-cursor-large', state.largeCursor);
+        root.classList.toggle('jr-cursor-large', state.largeCursor);
         setToggle(q('[data-action="toggleCursor"]'), state.largeCursor);
 
         if (typeof responsiveVoice !== 'undefined' && state.voiceMode) {
@@ -778,13 +778,13 @@
 
     function toggleAnimations() {
         state.animationsDisabled = !state.animationsDisabled;
-        root.classList.toggle('sstc-animations-disabled', state.animationsDisabled);
+        root.classList.toggle('jr-animations-disabled', state.animationsDisabled);
         setToggle(q('[data-action="toggleAnimations"]'), state.animationsDisabled);
         saveState();
     }
     function toggleHideImages() {
         state.hideImages = !state.hideImages;
-        root.classList.toggle('sstc-hide-images', state.hideImages);
+        root.classList.toggle('jr-hide-images', state.hideImages);
         setToggle(q('[data-action="toggleHideImages"]'), state.hideImages);
         if (state.hideImages) hideAllImagesAndBackgrounds();
         else restoreAllImagesAndBackgrounds();
@@ -793,7 +793,7 @@
 
     function toggleMagnifier() {
         state.magnifyMode = !state.magnifyMode;
-        root.classList.toggle('sstc-magnify-mode', state.magnifyMode);
+        root.classList.toggle('jr-magnify-mode', state.magnifyMode);
         setToggle(q('[data-action="toggleMagnifier"]'), state.magnifyMode);
         if (state.magnifyMode) activateMagnifier();
         else deactivateMagnifier();
@@ -877,18 +877,18 @@
 
         state = { ...DEFAULT_STATE };
         root.classList.remove(
-            'sstc-menu-open', 'sstc-voice-mode', 'sstc-reading-guide-active',
-            'sstc-monochrome', 'sstc-high-contrast', 'sstc-cursor-large',
-            'sstc-animations-disabled', 'sstc-hide-images', 'sstc-magnify-mode',
-            'sstc-virtual-keyboard-open'
+            'jr-menu-open', 'jr-voice-mode', 'jr-reading-guide-active',
+            'jr-monochrome', 'jr-high-contrast', 'jr-cursor-large',
+            'jr-animations-disabled', 'jr-hide-images', 'jr-magnify-mode',
+            'jr-virtual-keyboard-open'
         );
         root.style.fontSize = ''; root.style.lineHeight = ''; root.style.letterSpacing = ''; root.style.wordSpacing = ''; root.style.fontWeight = '';
-        const box = q('.sstc-page-root'); if (box) box.style.textAlign = '';
+        const box = q('.jr-page-root'); if (box) box.style.textAlign = '';
 
         const tv = q('[data-role="textSizeValue"]'); if (tv) tv.textContent = '100%';
         const lv = q('[data-role="lineHeightValue"]'); if (lv) lv.textContent = '1.6x';
 
-        qa('.sstc-toggle-switch').forEach(t => t.classList.remove('sstc-active'));
+        qa('.jr-toggle-switch').forEach(t => t.classList.remove('jr-active'));
         setGroupActive('[data-group="spacing"]', 'normal');
         setGroupActive('[data-group="align"]', 'left');
 
@@ -903,8 +903,8 @@
 
         const act = t.getAttribute('data-action');
         switch (act) {
-            case 'togglesstcMenu': togglesstcMenu(); break;
-            case 'closeMenu': togglesstcMenu(false); break;
+            case 'togglejrMenu': togglejrMenu(); break;
+            case 'closeMenu': togglejrMenu(false); break;
             case 'toggleVoice': toggleVoice(); break;
             case 'textSizeDec': textSize(-10); break;
             case 'textSizeInc': textSize(10); break;
@@ -936,7 +936,7 @@
 
     document.addEventListener('keydown', e => {
         if (e.key === 'Escape') {
-            togglesstcMenu(false);
+            togglejrMenu(false);
             if (typeof responsiveVoice !== 'undefined') responsiveVoice.cancel();
             cancelVoiceHover();
             if (state.virtualKeyboard) toggleVirtualKeyboard(false);

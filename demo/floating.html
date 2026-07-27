@@ -26,7 +26,7 @@
 </head>
 <body>
 
-    <div class="sstc-page-root">
+    <div class="jr-page-root">
 
         <!-- Hero -->
         <div class="demo-hero text-center">
@@ -91,7 +91,7 @@
             </div>
         </div>
 
-    </div><!-- /.sstc-page-root -->
+    </div><!-- /.jr-page-root -->
 
     <!-- =====================================================================
          jr-accessibility Widget — Pure HTML version
@@ -99,14 +99,14 @@
          ===================================================================== -->
 
     <!-- Reading guide & Magnifier elements (handled by JS) -->
-    <div class="sstc-reading-guide"></div>
-    <div class="sstc-magnifier" data-acc-ignore-magnifier="1" aria-hidden="true">
-        <div class="sstc-magnifier-inner"></div>
+    <div class="jr-reading-guide"></div>
+    <div class="jr-magnifier" data-acc-ignore-magnifier="1" aria-hidden="true">
+        <div class="jr-magnifier-inner"></div>
     </div>
 
     <!-- Floating Sidebar (desktop, shown above 1200px) -->
     <nav class="floating-right">
-        <a class="fl-btn sstc-clickable" data-action="togglesstcMenu" aria-label="Open accessibility menu" href="#">
+        <a class="fl-btn jr-clickable" data-action="togglesstcMenu" aria-label="Open accessibility menu" href="#">
             <i class="bi bi-person-wheelchair"></i><span class="label">Accessibility</span>
         </a>
     </nav>
@@ -117,7 +117,7 @@
             <i class="bi bi-grid-3x3-gap-fill"></i> Features
         </button>
         <div class="fab-sheet rounded-4">
-            <a href="#" data-action="togglesstcMenu" class="fab-item sstc-clickable row g-2 align-items-center text-reset text-decoration-none" aria-label="Open accessibility menu">
+            <a href="#" data-action="togglesstcMenu" class="fab-item jr-clickable row g-2 align-items-center text-reset text-decoration-none" aria-label="Open accessibility menu">
                 <div class="col-3 d-flex justify-content-center">
                     <div class="fab-ico blue"><i class="bi bi-person-wheelchair"></i></div>
                 </div>
@@ -130,266 +130,266 @@
     </div>
 
     <!-- Overlay (shown when accessibility menu is open) -->
-    <div class="sstc-overlay" data-action="closeMenu" aria-hidden="true"></div>
+    <div class="jr-overlay" data-action="closeMenu" aria-hidden="true"></div>
 
     <!-- Accessibility Menu Drawer -->
-    <aside class="sstc-accessibility-menu" role="dialog" aria-modal="true" aria-label="Accessibility Menu">
-        <div class="sstc-menu-header">
+    <aside class="jr-accessibility-menu" role="dialog" aria-modal="true" aria-label="Accessibility Menu">
+        <div class="jr-menu-header">
             <h2>Accessibility Menu</h2>
-            <button class="sstc-close-btn sstc-clickable" data-action="closeMenu" aria-label="Close accessibility menu"><i class="bi bi-x"></i></button>
+            <button class="jr-close-btn jr-clickable" data-action="closeMenu" aria-label="Close accessibility menu"><i class="bi bi-x"></i></button>
         </div>
-        <div class="sstc-menu-content">
-            <div class="sstc-menu-grid">
+        <div class="jr-menu-content">
+            <div class="jr-menu-grid">
                 <!-- Voice Mode -->
-                <section class="sstc-menu-card">
-                    <div class="sstc-menu-card__icon"><i class="bi bi-volume-up"></i></div>
-                    <h3 class="sstc-menu-card__title">Enable Voice Mode</h3>
-                    <p class="sstc-menu-card__note">Hear paragraphs read aloud when you hover your cursor over them.</p>
-                    <div class="sstc-menu-card__control">
-                        <div class="sstc-toggle-switch sstc-clickable" data-action="toggleVoice" role="switch" aria-label="Toggle voice mode">
-                            <div class="sstc-toggle-slider"></div>
+                <section class="jr-menu-card">
+                    <div class="jr-menu-card__icon"><i class="bi bi-volume-up"></i></div>
+                    <h3 class="jr-menu-card__title">Enable Voice Mode</h3>
+                    <p class="jr-menu-card__note">Hear paragraphs read aloud when you hover your cursor over them.</p>
+                    <div class="jr-menu-card__control">
+                        <div class="jr-toggle-switch jr-clickable" data-action="toggleVoice" role="switch" aria-label="Toggle voice mode">
+                            <div class="jr-toggle-slider"></div>
                         </div>
                     </div>
                 </section>
                 <!-- Text Size -->
-                <section class="sstc-menu-card">
-                    <div class="sstc-menu-card__icon"><i class="bi bi-type"></i></div>
-                    <h3 class="sstc-menu-card__title">Adjust Text Size</h3>
-                    <p class="sstc-menu-card__note">Make page text larger or smaller to match your preferred reading size.</p>
-                    <div class="sstc-menu-card__control">
-                        <div class="sstc-control-group" aria-label="Text size control">
-                            <div class="sstc-control-buttons">
-                                <button class="sstc-control-btn sstc-clickable" data-action="textSizeDec" aria-label="Decrease text size"><i class="bi bi-dash"></i></button>
+                <section class="jr-menu-card">
+                    <div class="jr-menu-card__icon"><i class="bi bi-type"></i></div>
+                    <h3 class="jr-menu-card__title">Adjust Text Size</h3>
+                    <p class="jr-menu-card__note">Make page text larger or smaller to match your preferred reading size.</p>
+                    <div class="jr-menu-card__control">
+                        <div class="jr-control-group" aria-label="Text size control">
+                            <div class="jr-control-buttons">
+                                <button class="jr-control-btn jr-clickable" data-action="textSizeDec" aria-label="Decrease text size"><i class="bi bi-dash"></i></button>
                             </div>
-                            <div class="sstc-control-value" data-role="textSizeValue" aria-live="polite">100%</div>
-                            <div class="sstc-control-buttons">
-                                <button class="sstc-control-btn sstc-clickable" data-action="textSizeInc" aria-label="Increase text size"><i class="bi bi-plus"></i></button>
+                            <div class="jr-control-value" data-role="textSizeValue" aria-live="polite">100%</div>
+                            <div class="jr-control-buttons">
+                                <button class="jr-control-btn jr-clickable" data-action="textSizeInc" aria-label="Increase text size"><i class="bi bi-plus"></i></button>
                             </div>
                         </div>
                     </div>
                 </section>
                 <!-- Line Height -->
-                <section class="sstc-menu-card">
-                    <div class="sstc-menu-card__icon"><i class="bi bi-text-paragraph"></i></div>
-                    <h3 class="sstc-menu-card__title">Adjust Line Height</h3>
-                    <p class="sstc-menu-card__note">Increase spacing between lines so paragraphs feel more open and relaxed.</p>
-                    <div class="sstc-menu-card__control">
-                        <div class="sstc-control-group" aria-label="Line height control">
-                            <div class="sstc-control-buttons">
-                                <button class="sstc-control-btn sstc-clickable" data-action="lineHeightDec" aria-label="Decrease line height"><i class="bi bi-dash"></i></button>
+                <section class="jr-menu-card">
+                    <div class="jr-menu-card__icon"><i class="bi bi-text-paragraph"></i></div>
+                    <h3 class="jr-menu-card__title">Adjust Line Height</h3>
+                    <p class="jr-menu-card__note">Increase spacing between lines so paragraphs feel more open and relaxed.</p>
+                    <div class="jr-menu-card__control">
+                        <div class="jr-control-group" aria-label="Line height control">
+                            <div class="jr-control-buttons">
+                                <button class="jr-control-btn jr-clickable" data-action="lineHeightDec" aria-label="Decrease line height"><i class="bi bi-dash"></i></button>
                             </div>
-                            <div class="sstc-control-value" data-role="lineHeightValue" aria-live="polite">1.6x</div>
-                            <div class="sstc-control-buttons">
-                                <button class="sstc-control-btn sstc-clickable" data-action="lineHeightInc" aria-label="Increase line height"><i class="bi bi-plus"></i></button>
+                            <div class="jr-control-value" data-role="lineHeightValue" aria-live="polite">1.6x</div>
+                            <div class="jr-control-buttons">
+                                <button class="jr-control-btn jr-clickable" data-action="lineHeightInc" aria-label="Increase line height"><i class="bi bi-plus"></i></button>
                             </div>
                         </div>
                     </div>
                 </section>
                 <!-- Text Spacing -->
-                <section class="sstc-menu-card">
-                    <div class="sstc-menu-card__icon"><i class="bi bi-distribute-horizontal"></i></div>
-                    <h3 class="sstc-menu-card__title">Text Spacing</h3>
-                    <p class="sstc-menu-card__note">Add extra letter and word spacing to reduce visual crowding.</p>
-                    <div class="sstc-menu-card__control">
-                        <div class="sstc-option-buttons" data-group="spacing" role="radiogroup" aria-label="Text spacing options">
-                            <button class="sstc-option-btn sstc-clickable sstc-active" data-action="spacing" data-value="normal" aria-pressed="true">Small</button>
-                            <button class="sstc-option-btn sstc-clickable" data-action="spacing" data-value="medium" aria-pressed="false">Medium</button>
-                            <button class="sstc-option-btn sstc-clickable" data-action="spacing" data-value="large" aria-pressed="false">Large</button>
+                <section class="jr-menu-card">
+                    <div class="jr-menu-card__icon"><i class="bi bi-distribute-horizontal"></i></div>
+                    <h3 class="jr-menu-card__title">Text Spacing</h3>
+                    <p class="jr-menu-card__note">Add extra letter and word spacing to reduce visual crowding.</p>
+                    <div class="jr-menu-card__control">
+                        <div class="jr-option-buttons" data-group="spacing" role="radiogroup" aria-label="Text spacing options">
+                            <button class="jr-option-btn jr-clickable jr-active" data-action="spacing" data-value="normal" aria-pressed="true">Small</button>
+                            <button class="jr-option-btn jr-clickable" data-action="spacing" data-value="medium" aria-pressed="false">Medium</button>
+                            <button class="jr-option-btn jr-clickable" data-action="spacing" data-value="large" aria-pressed="false">Large</button>
                         </div>
                     </div>
                 </section>
                 <!-- Text Alignment -->
-                <section class="sstc-menu-card">
-                    <div class="sstc-menu-card__icon"><i class="bi bi-text-left"></i></div>
-                    <h3 class="sstc-menu-card__title">Text Alignment</h3>
-                    <p class="sstc-menu-card__note">Choose how paragraphs align to improve readability on different layouts.</p>
-                    <div class="sstc-menu-card__control">
-                        <div class="sstc-line-height-options" data-group="align" role="radiogroup" aria-label="Text alignment options">
-                            <button class="sstc-line-height-btn sstc-clickable sstc-active" data-action="align" data-value="left" aria-pressed="true"><i class="bi bi-text-left"></i></button>
-                            <button class="sstc-line-height-btn sstc-clickable" data-action="align" data-value="center" aria-pressed="false"><i class="bi bi-text-center"></i></button>
-                            <button class="sstc-line-height-btn sstc-clickable" data-action="align" data-value="right" aria-pressed="false"><i class="bi bi-text-right"></i></button>
-                            <button class="sstc-line-height-btn sstc-clickable" data-action="align" data-value="justify" aria-pressed="false"><i class="bi bi-justify"></i></button>
+                <section class="jr-menu-card">
+                    <div class="jr-menu-card__icon"><i class="bi bi-text-left"></i></div>
+                    <h3 class="jr-menu-card__title">Text Alignment</h3>
+                    <p class="jr-menu-card__note">Choose how paragraphs align to improve readability on different layouts.</p>
+                    <div class="jr-menu-card__control">
+                        <div class="jr-line-height-options" data-group="align" role="radiogroup" aria-label="Text alignment options">
+                            <button class="jr-line-height-btn jr-clickable jr-active" data-action="align" data-value="left" aria-pressed="true"><i class="bi bi-text-left"></i></button>
+                            <button class="jr-line-height-btn jr-clickable" data-action="align" data-value="center" aria-pressed="false"><i class="bi bi-text-center"></i></button>
+                            <button class="jr-line-height-btn jr-clickable" data-action="align" data-value="right" aria-pressed="false"><i class="bi bi-text-right"></i></button>
+                            <button class="jr-line-height-btn jr-clickable" data-action="align" data-value="justify" aria-pressed="false"><i class="bi bi-justify"></i></button>
                         </div>
                     </div>
                 </section>
                 <!-- Bold Text -->
-                <section class="sstc-menu-card">
-                    <div class="sstc-menu-card__icon"><i class="bi bi-type-bold"></i></div>
-                    <h3 class="sstc-menu-card__title">Bold Text</h3>
-                    <p class="sstc-menu-card__note">Thicken all fonts on the page for better contrast and emphasis.</p>
-                    <div class="sstc-menu-card__control">
-                        <div class="sstc-toggle-switch sstc-clickable" data-action="toggleBold" role="switch" aria-label="Toggle bold text">
-                            <div class="sstc-toggle-slider"></div>
+                <section class="jr-menu-card">
+                    <div class="jr-menu-card__icon"><i class="bi bi-type-bold"></i></div>
+                    <h3 class="jr-menu-card__title">Bold Text</h3>
+                    <p class="jr-menu-card__note">Thicken all fonts on the page for better contrast and emphasis.</p>
+                    <div class="jr-menu-card__control">
+                        <div class="jr-toggle-switch jr-clickable" data-action="toggleBold" role="switch" aria-label="Toggle bold text">
+                            <div class="jr-toggle-slider"></div>
                         </div>
                     </div>
                 </section>
                 <!-- Reading Guide -->
-                <section class="sstc-menu-card">
-                    <div class="sstc-menu-card__icon"><i class="bi bi-rulers"></i></div>
-                    <h3 class="sstc-menu-card__title">Highlight Links</h3>
-                    <p class="sstc-menu-card__note">Display a reading guide and highlight key elements to stay on track.</p>
-                    <div class="sstc-menu-card__control">
-                        <div class="sstc-toggle-switch sstc-clickable" data-action="toggleReadingGuide" role="switch" aria-label="Toggle link highlight">
-                            <div class="sstc-toggle-slider"></div>
+                <section class="jr-menu-card">
+                    <div class="jr-menu-card__icon"><i class="bi bi-rulers"></i></div>
+                    <h3 class="jr-menu-card__title">Highlight Links</h3>
+                    <p class="jr-menu-card__note">Display a reading guide and highlight key elements to stay on track.</p>
+                    <div class="jr-menu-card__control">
+                        <div class="jr-toggle-switch jr-clickable" data-action="toggleReadingGuide" role="switch" aria-label="Toggle link highlight">
+                            <div class="jr-toggle-slider"></div>
                         </div>
                     </div>
                 </section>
                 <!-- Monochrome -->
-                <section class="sstc-menu-card">
-                    <div class="sstc-menu-card__icon"><i class="bi bi-palette"></i></div>
-                    <h3 class="sstc-menu-card__title">Monochrome Mode</h3>
-                    <p class="sstc-menu-card__note">Remove colors from the page to create a consistent grayscale experience.</p>
-                    <div class="sstc-menu-card__control">
-                        <div class="sstc-toggle-switch sstc-clickable" data-action="toggleMonochrome" role="switch" aria-label="Toggle monochrome mode">
-                            <div class="sstc-toggle-slider"></div>
+                <section class="jr-menu-card">
+                    <div class="jr-menu-card__icon"><i class="bi bi-palette"></i></div>
+                    <h3 class="jr-menu-card__title">Monochrome Mode</h3>
+                    <p class="jr-menu-card__note">Remove colors from the page to create a consistent grayscale experience.</p>
+                    <div class="jr-menu-card__control">
+                        <div class="jr-toggle-switch jr-clickable" data-action="toggleMonochrome" role="switch" aria-label="Toggle monochrome mode">
+                            <div class="jr-toggle-slider"></div>
                         </div>
                     </div>
                 </section>
                 <!-- High Contrast -->
-                <section class="sstc-menu-card">
-                    <div class="sstc-menu-card__icon"><i class="bi bi-circle-half"></i></div>
-                    <h3 class="sstc-menu-card__title">High Contrast Mode</h3>
-                    <p class="sstc-menu-card__note">Boost the contrast between text and background for maximum clarity.</p>
-                    <div class="sstc-menu-card__control">
-                        <div class="sstc-toggle-switch sstc-clickable" data-action="toggleHighContrast" role="switch" aria-label="Toggle high contrast mode">
-                            <div class="sstc-toggle-slider"></div>
+                <section class="jr-menu-card">
+                    <div class="jr-menu-card__icon"><i class="bi bi-circle-half"></i></div>
+                    <h3 class="jr-menu-card__title">High Contrast Mode</h3>
+                    <p class="jr-menu-card__note">Boost the contrast between text and background for maximum clarity.</p>
+                    <div class="jr-menu-card__control">
+                        <div class="jr-toggle-switch jr-clickable" data-action="toggleHighContrast" role="switch" aria-label="Toggle high contrast mode">
+                            <div class="jr-toggle-slider"></div>
                         </div>
                     </div>
                 </section>
                 <!-- Large Cursor -->
-                <section class="sstc-menu-card">
-                    <div class="sstc-menu-card__icon"><i class="bi bi-cursor"></i></div>
-                    <h3 class="sstc-menu-card__title">Enlarge Cursor</h3>
-                    <p class="sstc-menu-card__note">Use an oversized pointer so the cursor is easier to spot on screen.</p>
-                    <div class="sstc-menu-card__control">
-                        <div class="sstc-toggle-switch sstc-clickable" data-action="toggleCursor" role="switch" aria-label="Toggle large cursor">
-                            <div class="sstc-toggle-slider"></div>
+                <section class="jr-menu-card">
+                    <div class="jr-menu-card__icon"><i class="bi bi-cursor"></i></div>
+                    <h3 class="jr-menu-card__title">Enlarge Cursor</h3>
+                    <p class="jr-menu-card__note">Use an oversized pointer so the cursor is easier to spot on screen.</p>
+                    <div class="jr-menu-card__control">
+                        <div class="jr-toggle-switch jr-clickable" data-action="toggleCursor" role="switch" aria-label="Toggle large cursor">
+                            <div class="jr-toggle-slider"></div>
                         </div>
                     </div>
                 </section>
                 <!-- Magnifier -->
-                <section class="sstc-menu-card">
-                    <div class="sstc-menu-card__icon"><i class="bi bi-zoom-in"></i></div>
-                    <h3 class="sstc-menu-card__title">Cursor Magnifier</h3>
-                    <p class="sstc-menu-card__note">Activate a follow-along magnifier to enlarge content beneath the cursor.</p>
-                    <div class="sstc-menu-card__control">
-                        <div class="sstc-toggle-switch sstc-clickable" data-action="toggleMagnifier" role="switch" aria-label="Toggle cursor magnifier">
-                            <div class="sstc-toggle-slider"></div>
+                <section class="jr-menu-card">
+                    <div class="jr-menu-card__icon"><i class="bi bi-zoom-in"></i></div>
+                    <h3 class="jr-menu-card__title">Cursor Magnifier</h3>
+                    <p class="jr-menu-card__note">Activate a follow-along magnifier to enlarge content beneath the cursor.</p>
+                    <div class="jr-menu-card__control">
+                        <div class="jr-toggle-switch jr-clickable" data-action="toggleMagnifier" role="switch" aria-label="Toggle cursor magnifier">
+                            <div class="jr-toggle-slider"></div>
                         </div>
                     </div>
                 </section>
                 <!-- Pause Animations -->
-                <section class="sstc-menu-card">
-                    <div class="sstc-menu-card__icon"><i class="bi bi-pause-circle"></i></div>
-                    <h3 class="sstc-menu-card__title">Pause Animations</h3>
-                    <p class="sstc-menu-card__note">Stop motion effects and transitions that may be distracting or trigger discomfort.</p>
-                    <div class="sstc-menu-card__control">
-                        <div class="sstc-toggle-switch sstc-clickable" data-action="toggleAnimations" role="switch" aria-label="Toggle animation pause">
-                            <div class="sstc-toggle-slider"></div>
+                <section class="jr-menu-card">
+                    <div class="jr-menu-card__icon"><i class="bi bi-pause-circle"></i></div>
+                    <h3 class="jr-menu-card__title">Pause Animations</h3>
+                    <p class="jr-menu-card__note">Stop motion effects and transitions that may be distracting or trigger discomfort.</p>
+                    <div class="jr-menu-card__control">
+                        <div class="jr-toggle-switch jr-clickable" data-action="toggleAnimations" role="switch" aria-label="Toggle animation pause">
+                            <div class="jr-toggle-slider"></div>
                         </div>
                     </div>
                 </section>
                 <!-- Hide Images -->
-                <section class="sstc-menu-card">
-                    <div class="sstc-menu-card__icon"><i class="bi bi-image"></i></div>
-                    <h3 class="sstc-menu-card__title">Hide Images</h3>
-                    <p class="sstc-menu-card__note">Temporarily remove decorative images to keep focus on the written content.</p>
-                    <div class="sstc-menu-card__control">
-                        <div class="sstc-toggle-switch sstc-clickable" data-action="toggleHideImages" role="switch" aria-label="Toggle hide images">
-                            <div class="sstc-toggle-slider"></div>
+                <section class="jr-menu-card">
+                    <div class="jr-menu-card__icon"><i class="bi bi-image"></i></div>
+                    <h3 class="jr-menu-card__title">Hide Images</h3>
+                    <p class="jr-menu-card__note">Temporarily remove decorative images to keep focus on the written content.</p>
+                    <div class="jr-menu-card__control">
+                        <div class="jr-toggle-switch jr-clickable" data-action="toggleHideImages" role="switch" aria-label="Toggle hide images">
+                            <div class="jr-toggle-slider"></div>
                         </div>
                     </div>
                 </section>
                 <!-- Virtual Keyboard -->
-                <section class="sstc-menu-card">
-                    <div class="sstc-menu-card__icon"><i class="bi bi-keyboard"></i></div>
-                    <h3 class="sstc-menu-card__title">Virtual Keyboard</h3>
-                    <p class="sstc-menu-card__note">Use an on-screen keyboard for easier typing.</p>
-                    <div class="sstc-menu-card__control">
-                        <div class="sstc-toggle-switch sstc-clickable" data-action="toggleVirtualKeyboard" role="switch" aria-label="Toggle virtual keyboard">
-                            <div class="sstc-toggle-slider"></div>
+                <section class="jr-menu-card">
+                    <div class="jr-menu-card__icon"><i class="bi bi-keyboard"></i></div>
+                    <h3 class="jr-menu-card__title">Virtual Keyboard</h3>
+                    <p class="jr-menu-card__note">Use an on-screen keyboard for easier typing.</p>
+                    <div class="jr-menu-card__control">
+                        <div class="jr-toggle-switch jr-clickable" data-action="toggleVirtualKeyboard" role="switch" aria-label="Toggle virtual keyboard">
+                            <div class="jr-toggle-slider"></div>
                         </div>
                     </div>
                 </section>
             </div>
-            <button class="sstc-reset-btn sstc-clickable" data-action="reset" aria-label="Reset accessibility settings">
+            <button class="jr-reset-btn jr-clickable" data-action="reset" aria-label="Reset accessibility settings">
                 <i class="bi bi-arrow-counterclockwise me-2"></i>Reset Settings
             </button>
         </div>
     </aside>
 
     <!-- Virtual Keyboard -->
-    <div class="sstc-virtual-keyboard" id="sstcVirtualKeyboard" data-acc-ignore-magnifier="1" aria-hidden="true">
-        <div class="sstc-virtual-keyboard__inner">
-            <div class="sstc-virtual-keyboard__top">
+    <div class="jr-virtual-keyboard" id="sstcVirtualKeyboard" data-acc-ignore-magnifier="1" aria-hidden="true">
+        <div class="jr-virtual-keyboard__inner">
+            <div class="jr-virtual-keyboard__top">
                 <div>
-                    <p class="sstc-virtual-keyboard__title mb-1"><i class="bi bi-keyboard me-2"></i>Virtual Keyboard</p>
-                    <p class="sstc-virtual-keyboard__subtitle mb-0">Tap the keys to type into the focused field.</p>
+                    <p class="jr-virtual-keyboard__title mb-1"><i class="bi bi-keyboard me-2"></i>Virtual Keyboard</p>
+                    <p class="jr-virtual-keyboard__subtitle mb-0">Tap the keys to type into the focused field.</p>
                 </div>
-                <div class="sstc-virtual-keyboard__actions">
-                    <button type="button" class="sstc-virtual-keyboard__action" data-action="virtualClear" aria-label="Clear current field">
+                <div class="jr-virtual-keyboard__actions">
+                    <button type="button" class="jr-virtual-keyboard__action" data-action="virtualClear" aria-label="Clear current field">
                         <i class="bi bi-eraser-fill"></i>
                     </button>
-                    <button type="button" class="sstc-virtual-keyboard__action" data-action="closeVirtualKeyboard" aria-label="Hide virtual keyboard">
+                    <button type="button" class="jr-virtual-keyboard__action" data-action="closeVirtualKeyboard" aria-label="Hide virtual keyboard">
                         <i class="bi bi-x-lg"></i>
                     </button>
                 </div>
             </div>
-            <div class="sstc-virtual-keyboard__rows" role="group" aria-label="Virtual keyboard">
-                <div class="sstc-virtual-keyboard__row">
-                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="1">1</button>
-                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="2">2</button>
-                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="3">3</button>
-                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="4">4</button>
-                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="5">5</button>
-                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="6">6</button>
-                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="7">7</button>
-                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="8">8</button>
-                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="9">9</button>
-                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="0">0</button>
-                    <button type="button" class="sstc-virtual-keyboard__key sstc-virtual-keyboard__key--control" data-action="virtualBackspace" aria-label="Backspace">
+            <div class="jr-virtual-keyboard__rows" role="group" aria-label="Virtual keyboard">
+                <div class="jr-virtual-keyboard__row">
+                    <button type="button" class="jr-virtual-keyboard__key" data-action="virtualKey" data-key="1">1</button>
+                    <button type="button" class="jr-virtual-keyboard__key" data-action="virtualKey" data-key="2">2</button>
+                    <button type="button" class="jr-virtual-keyboard__key" data-action="virtualKey" data-key="3">3</button>
+                    <button type="button" class="jr-virtual-keyboard__key" data-action="virtualKey" data-key="4">4</button>
+                    <button type="button" class="jr-virtual-keyboard__key" data-action="virtualKey" data-key="5">5</button>
+                    <button type="button" class="jr-virtual-keyboard__key" data-action="virtualKey" data-key="6">6</button>
+                    <button type="button" class="jr-virtual-keyboard__key" data-action="virtualKey" data-key="7">7</button>
+                    <button type="button" class="jr-virtual-keyboard__key" data-action="virtualKey" data-key="8">8</button>
+                    <button type="button" class="jr-virtual-keyboard__key" data-action="virtualKey" data-key="9">9</button>
+                    <button type="button" class="jr-virtual-keyboard__key" data-action="virtualKey" data-key="0">0</button>
+                    <button type="button" class="jr-virtual-keyboard__key jr-virtual-keyboard__key--control" data-action="virtualBackspace" aria-label="Backspace">
                         <i class="bi bi-backspace"></i>
                     </button>
                 </div>
-                <div class="sstc-virtual-keyboard__row">
-                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="q">q</button>
-                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="w">w</button>
-                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="e">e</button>
-                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="r">r</button>
-                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="t">t</button>
-                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="y">y</button>
-                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="u">u</button>
-                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="i">i</button>
-                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="o">o</button>
-                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="p">p</button>
+                <div class="jr-virtual-keyboard__row">
+                    <button type="button" class="jr-virtual-keyboard__key" data-action="virtualKey" data-key="q">q</button>
+                    <button type="button" class="jr-virtual-keyboard__key" data-action="virtualKey" data-key="w">w</button>
+                    <button type="button" class="jr-virtual-keyboard__key" data-action="virtualKey" data-key="e">e</button>
+                    <button type="button" class="jr-virtual-keyboard__key" data-action="virtualKey" data-key="r">r</button>
+                    <button type="button" class="jr-virtual-keyboard__key" data-action="virtualKey" data-key="t">t</button>
+                    <button type="button" class="jr-virtual-keyboard__key" data-action="virtualKey" data-key="y">y</button>
+                    <button type="button" class="jr-virtual-keyboard__key" data-action="virtualKey" data-key="u">u</button>
+                    <button type="button" class="jr-virtual-keyboard__key" data-action="virtualKey" data-key="i">i</button>
+                    <button type="button" class="jr-virtual-keyboard__key" data-action="virtualKey" data-key="o">o</button>
+                    <button type="button" class="jr-virtual-keyboard__key" data-action="virtualKey" data-key="p">p</button>
                 </div>
-                <div class="sstc-virtual-keyboard__row">
-                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="a">a</button>
-                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="s">s</button>
-                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="d">d</button>
-                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="f">f</button>
-                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="g">g</button>
-                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="h">h</button>
-                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="j">j</button>
-                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="k">k</button>
-                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="l">l</button>
-                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="'">'</button>
+                <div class="jr-virtual-keyboard__row">
+                    <button type="button" class="jr-virtual-keyboard__key" data-action="virtualKey" data-key="a">a</button>
+                    <button type="button" class="jr-virtual-keyboard__key" data-action="virtualKey" data-key="s">s</button>
+                    <button type="button" class="jr-virtual-keyboard__key" data-action="virtualKey" data-key="d">d</button>
+                    <button type="button" class="jr-virtual-keyboard__key" data-action="virtualKey" data-key="f">f</button>
+                    <button type="button" class="jr-virtual-keyboard__key" data-action="virtualKey" data-key="g">g</button>
+                    <button type="button" class="jr-virtual-keyboard__key" data-action="virtualKey" data-key="h">h</button>
+                    <button type="button" class="jr-virtual-keyboard__key" data-action="virtualKey" data-key="j">j</button>
+                    <button type="button" class="jr-virtual-keyboard__key" data-action="virtualKey" data-key="k">k</button>
+                    <button type="button" class="jr-virtual-keyboard__key" data-action="virtualKey" data-key="l">l</button>
+                    <button type="button" class="jr-virtual-keyboard__key" data-action="virtualKey" data-key="'">'</button>
                 </div>
-                <div class="sstc-virtual-keyboard__row">
-                    <button type="button" class="sstc-virtual-keyboard__key sstc-virtual-keyboard__key--control" data-action="virtualShift" aria-label="Toggle shift">Shift</button>
-                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="z">z</button>
-                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="x">x</button>
-                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="c">c</button>
-                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="v">v</button>
-                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="b">b</button>
-                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="n">n</button>
-                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="m">m</button>
-                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key=",">,</button>
-                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key=".">.</button>
+                <div class="jr-virtual-keyboard__row">
+                    <button type="button" class="jr-virtual-keyboard__key jr-virtual-keyboard__key--control" data-action="virtualShift" aria-label="Toggle shift">Shift</button>
+                    <button type="button" class="jr-virtual-keyboard__key" data-action="virtualKey" data-key="z">z</button>
+                    <button type="button" class="jr-virtual-keyboard__key" data-action="virtualKey" data-key="x">x</button>
+                    <button type="button" class="jr-virtual-keyboard__key" data-action="virtualKey" data-key="c">c</button>
+                    <button type="button" class="jr-virtual-keyboard__key" data-action="virtualKey" data-key="v">v</button>
+                    <button type="button" class="jr-virtual-keyboard__key" data-action="virtualKey" data-key="b">b</button>
+                    <button type="button" class="jr-virtual-keyboard__key" data-action="virtualKey" data-key="n">n</button>
+                    <button type="button" class="jr-virtual-keyboard__key" data-action="virtualKey" data-key="m">m</button>
+                    <button type="button" class="jr-virtual-keyboard__key" data-action="virtualKey" data-key=",">,</button>
+                    <button type="button" class="jr-virtual-keyboard__key" data-action="virtualKey" data-key=".">.</button>
                 </div>
-                <div class="sstc-virtual-keyboard__row">
-                    <button type="button" class="sstc-virtual-keyboard__key sstc-virtual-keyboard__key--space" data-action="virtualSpace" aria-label="Space">Space</button>
-                    <button type="button" class="sstc-virtual-keyboard__key sstc-virtual-keyboard__key--control" data-action="virtualEnter" aria-label="Enter">Enter</button>
+                <div class="jr-virtual-keyboard__row">
+                    <button type="button" class="jr-virtual-keyboard__key jr-virtual-keyboard__key--space" data-action="virtualSpace" aria-label="Space">Space</button>
+                    <button type="button" class="jr-virtual-keyboard__key jr-virtual-keyboard__key--control" data-action="virtualEnter" aria-label="Enter">Enter</button>
                 </div>
             </div>
         </div>
