@@ -1,43 +1,407 @@
-# Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jr-accessibility — Demo</title>
 
-on:
-  # Runs on pushes targeting the default branch
-  push:
-    branches: ["master"]
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Bootstrap 5 CSS (optional, needed for modal) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+    <!-- jr-accessibility CSS -->
+    <link rel="stylesheet" href="../public/assets/jr-accessibility/css/style.css">
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+    <style>
+        /* Demo page styles — not part of the package */
+        body { font-family: 'Segoe UI', system-ui, sans-serif; }
+        .demo-hero { padding: 80px 0; background: linear-gradient(135deg, #1053d5, #4f8cff); color: #fff; }
+        .demo-hero h1 { font-size: 2.5rem; font-weight: 700; }
+        .demo-hero p { font-size: 1.1rem; opacity: 0.9; }
+        .demo-section { padding: 60px 0; }
+        .demo-section h2 { font-weight: 700; margin-bottom: 1.5rem; }
+        .demo-card { background: #f7f9ff; border-radius: 1rem; padding: 2rem; box-shadow: 0 4px 20px rgba(15, 32, 62, 0.06); }
+    </style>
+</head>
+<body>
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
+    <div class="sstc-page-root">
 
-jobs:
-  # Single deploy job since we're just deploying
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          # Upload entire repository
-          path: '.'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v5
+        <!-- Hero -->
+        <div class="demo-hero text-center">
+            <div class="container">
+                <h1><i class="bi bi-universal-access"></i> jr-accessibility</h1>
+                <p class="mb-0">Framework-agnostic accessibility widget. Drop-in, no backend required.</p>
+            </div>
+        </div>
+
+        <!-- Demo Content -->
+        <div class="demo-section">
+            <div class="container">
+                <h2>Features</h2>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="demo-card">
+                            <h5><i class="bi bi-volume-up text-primary me-2"></i>Voice Mode</h5>
+                            <p class="text-muted mb-0">Hover over any paragraph to hear it read aloud via ResponsiveVoice.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="demo-card">
+                            <h5><i class="bi bi-type text-primary me-2"></i>Typography Controls</h5>
+                            <p class="text-muted mb-0">Adjust text size, line height, letter spacing, alignment, and bold weight.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="demo-card">
+                            <h5><i class="bi bi-palette text-primary me-2"></i>Visual Modes</h5>
+                            <p class="text-muted mb-0">High contrast, monochrome, hide images, pause animations — full control.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="demo-card">
+                            <h5><i class="bi bi-zoom-in text-primary me-2"></i>Magnifier</h5>
+                            <p class="text-muted mb-0">Cursor-following magnifier lens for enhanced readability.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="demo-card">
+                            <h5><i class="bi bi-keyboard text-primary me-2"></i>Virtual Keyboard</h5>
+                            <p class="text-muted mb-0">On-screen keyboard for users who can't use a physical keyboard.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="demo-card">
+                            <h5><i class="bi bi-emoji-smile text-primary me-2"></i>Feedback Modal</h5>
+                            <p class="text-muted mb-0">Collect user feedback with emoji rating and math captcha. Requires backend.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="my-5">
+                <h2>Try It Now</h2>
+                <p class="text-muted">Look at the <strong>floating buttons</strong> on the left side (desktop) or the <strong>FAB button</strong> in the bottom-left corner (mobile). Hover over paragraphs to test voice mode.</p>
+
+                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+
+                <p class="text-muted">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+
+                <p class="text-muted">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</p>
+            </div>
+        </div>
+
+    </div><!-- /.sstc-page-root -->
+
+    <!-- =====================================================================
+         jr-accessibility Widget — Pure HTML version
+         Copy the block below into any HTML page to use this widget.
+         ===================================================================== -->
+
+    <!-- Reading guide & Magnifier elements (handled by JS) -->
+    <div class="sstc-reading-guide"></div>
+    <div class="sstc-magnifier" data-acc-ignore-magnifier="1" aria-hidden="true">
+        <div class="sstc-magnifier-inner"></div>
+    </div>
+
+    <!-- Floating Sidebar (desktop, shown above 1200px) -->
+    <nav class="floating-right">
+        <a class="fl-btn sstc-clickable" data-action="togglesstcMenu" aria-label="Open accessibility menu" href="#">
+            <i class="bi bi-person-wheelchair"></i><span class="label">Accessibility</span>
+        </a>
+    </nav>
+
+    <!-- Mobile FAB (shown below 1200px) -->
+    <div class="fab-mobile" id="fabMobile" aria-expanded="false">
+        <button class="fab-btn" id="fabToggle" type="button" aria-label="Toggle features menu">
+            <i class="bi bi-grid-3x3-gap-fill"></i> Features
+        </button>
+        <div class="fab-sheet rounded-4">
+            <a href="#" data-action="togglesstcMenu" class="fab-item sstc-clickable row g-2 align-items-center text-reset text-decoration-none" aria-label="Open accessibility menu">
+                <div class="col-3 d-flex justify-content-center">
+                    <div class="fab-ico blue"><i class="bi bi-person-wheelchair"></i></div>
+                </div>
+                <div class="col-9">
+                    <p class="fab-title mb-1">Accessibility</p>
+                    <p class="fab-desc mb-0">Adjust text, contrast, and navigation</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Overlay (shown when accessibility menu is open) -->
+    <div class="sstc-overlay" data-action="closeMenu" aria-hidden="true"></div>
+
+    <!-- Accessibility Menu Drawer -->
+    <aside class="sstc-accessibility-menu" role="dialog" aria-modal="true" aria-label="Accessibility Menu">
+        <div class="sstc-menu-header">
+            <h2>Accessibility Menu</h2>
+            <button class="sstc-close-btn sstc-clickable" data-action="closeMenu" aria-label="Close accessibility menu"><i class="bi bi-x"></i></button>
+        </div>
+        <div class="sstc-menu-content">
+            <div class="sstc-menu-grid">
+                <!-- Voice Mode -->
+                <section class="sstc-menu-card">
+                    <div class="sstc-menu-card__icon"><i class="bi bi-volume-up"></i></div>
+                    <h3 class="sstc-menu-card__title">Enable Voice Mode</h3>
+                    <p class="sstc-menu-card__note">Hear paragraphs read aloud when you hover your cursor over them.</p>
+                    <div class="sstc-menu-card__control">
+                        <div class="sstc-toggle-switch sstc-clickable" data-action="toggleVoice" role="switch" aria-label="Toggle voice mode">
+                            <div class="sstc-toggle-slider"></div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Text Size -->
+                <section class="sstc-menu-card">
+                    <div class="sstc-menu-card__icon"><i class="bi bi-type"></i></div>
+                    <h3 class="sstc-menu-card__title">Adjust Text Size</h3>
+                    <p class="sstc-menu-card__note">Make page text larger or smaller to match your preferred reading size.</p>
+                    <div class="sstc-menu-card__control">
+                        <div class="sstc-control-group" aria-label="Text size control">
+                            <div class="sstc-control-buttons">
+                                <button class="sstc-control-btn sstc-clickable" data-action="textSizeDec" aria-label="Decrease text size"><i class="bi bi-dash"></i></button>
+                            </div>
+                            <div class="sstc-control-value" data-role="textSizeValue" aria-live="polite">100%</div>
+                            <div class="sstc-control-buttons">
+                                <button class="sstc-control-btn sstc-clickable" data-action="textSizeInc" aria-label="Increase text size"><i class="bi bi-plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Line Height -->
+                <section class="sstc-menu-card">
+                    <div class="sstc-menu-card__icon"><i class="bi bi-text-paragraph"></i></div>
+                    <h3 class="sstc-menu-card__title">Adjust Line Height</h3>
+                    <p class="sstc-menu-card__note">Increase spacing between lines so paragraphs feel more open and relaxed.</p>
+                    <div class="sstc-menu-card__control">
+                        <div class="sstc-control-group" aria-label="Line height control">
+                            <div class="sstc-control-buttons">
+                                <button class="sstc-control-btn sstc-clickable" data-action="lineHeightDec" aria-label="Decrease line height"><i class="bi bi-dash"></i></button>
+                            </div>
+                            <div class="sstc-control-value" data-role="lineHeightValue" aria-live="polite">1.6x</div>
+                            <div class="sstc-control-buttons">
+                                <button class="sstc-control-btn sstc-clickable" data-action="lineHeightInc" aria-label="Increase line height"><i class="bi bi-plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Text Spacing -->
+                <section class="sstc-menu-card">
+                    <div class="sstc-menu-card__icon"><i class="bi bi-distribute-horizontal"></i></div>
+                    <h3 class="sstc-menu-card__title">Text Spacing</h3>
+                    <p class="sstc-menu-card__note">Add extra letter and word spacing to reduce visual crowding.</p>
+                    <div class="sstc-menu-card__control">
+                        <div class="sstc-option-buttons" data-group="spacing" role="radiogroup" aria-label="Text spacing options">
+                            <button class="sstc-option-btn sstc-clickable sstc-active" data-action="spacing" data-value="normal" aria-pressed="true">Small</button>
+                            <button class="sstc-option-btn sstc-clickable" data-action="spacing" data-value="medium" aria-pressed="false">Medium</button>
+                            <button class="sstc-option-btn sstc-clickable" data-action="spacing" data-value="large" aria-pressed="false">Large</button>
+                        </div>
+                    </div>
+                </section>
+                <!-- Text Alignment -->
+                <section class="sstc-menu-card">
+                    <div class="sstc-menu-card__icon"><i class="bi bi-text-left"></i></div>
+                    <h3 class="sstc-menu-card__title">Text Alignment</h3>
+                    <p class="sstc-menu-card__note">Choose how paragraphs align to improve readability on different layouts.</p>
+                    <div class="sstc-menu-card__control">
+                        <div class="sstc-line-height-options" data-group="align" role="radiogroup" aria-label="Text alignment options">
+                            <button class="sstc-line-height-btn sstc-clickable sstc-active" data-action="align" data-value="left" aria-pressed="true"><i class="bi bi-text-left"></i></button>
+                            <button class="sstc-line-height-btn sstc-clickable" data-action="align" data-value="center" aria-pressed="false"><i class="bi bi-text-center"></i></button>
+                            <button class="sstc-line-height-btn sstc-clickable" data-action="align" data-value="right" aria-pressed="false"><i class="bi bi-text-right"></i></button>
+                            <button class="sstc-line-height-btn sstc-clickable" data-action="align" data-value="justify" aria-pressed="false"><i class="bi bi-justify"></i></button>
+                        </div>
+                    </div>
+                </section>
+                <!-- Bold Text -->
+                <section class="sstc-menu-card">
+                    <div class="sstc-menu-card__icon"><i class="bi bi-type-bold"></i></div>
+                    <h3 class="sstc-menu-card__title">Bold Text</h3>
+                    <p class="sstc-menu-card__note">Thicken all fonts on the page for better contrast and emphasis.</p>
+                    <div class="sstc-menu-card__control">
+                        <div class="sstc-toggle-switch sstc-clickable" data-action="toggleBold" role="switch" aria-label="Toggle bold text">
+                            <div class="sstc-toggle-slider"></div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Reading Guide -->
+                <section class="sstc-menu-card">
+                    <div class="sstc-menu-card__icon"><i class="bi bi-rulers"></i></div>
+                    <h3 class="sstc-menu-card__title">Highlight Links</h3>
+                    <p class="sstc-menu-card__note">Display a reading guide and highlight key elements to stay on track.</p>
+                    <div class="sstc-menu-card__control">
+                        <div class="sstc-toggle-switch sstc-clickable" data-action="toggleReadingGuide" role="switch" aria-label="Toggle link highlight">
+                            <div class="sstc-toggle-slider"></div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Monochrome -->
+                <section class="sstc-menu-card">
+                    <div class="sstc-menu-card__icon"><i class="bi bi-palette"></i></div>
+                    <h3 class="sstc-menu-card__title">Monochrome Mode</h3>
+                    <p class="sstc-menu-card__note">Remove colors from the page to create a consistent grayscale experience.</p>
+                    <div class="sstc-menu-card__control">
+                        <div class="sstc-toggle-switch sstc-clickable" data-action="toggleMonochrome" role="switch" aria-label="Toggle monochrome mode">
+                            <div class="sstc-toggle-slider"></div>
+                        </div>
+                    </div>
+                </section>
+                <!-- High Contrast -->
+                <section class="sstc-menu-card">
+                    <div class="sstc-menu-card__icon"><i class="bi bi-circle-half"></i></div>
+                    <h3 class="sstc-menu-card__title">High Contrast Mode</h3>
+                    <p class="sstc-menu-card__note">Boost the contrast between text and background for maximum clarity.</p>
+                    <div class="sstc-menu-card__control">
+                        <div class="sstc-toggle-switch sstc-clickable" data-action="toggleHighContrast" role="switch" aria-label="Toggle high contrast mode">
+                            <div class="sstc-toggle-slider"></div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Large Cursor -->
+                <section class="sstc-menu-card">
+                    <div class="sstc-menu-card__icon"><i class="bi bi-cursor"></i></div>
+                    <h3 class="sstc-menu-card__title">Enlarge Cursor</h3>
+                    <p class="sstc-menu-card__note">Use an oversized pointer so the cursor is easier to spot on screen.</p>
+                    <div class="sstc-menu-card__control">
+                        <div class="sstc-toggle-switch sstc-clickable" data-action="toggleCursor" role="switch" aria-label="Toggle large cursor">
+                            <div class="sstc-toggle-slider"></div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Magnifier -->
+                <section class="sstc-menu-card">
+                    <div class="sstc-menu-card__icon"><i class="bi bi-zoom-in"></i></div>
+                    <h3 class="sstc-menu-card__title">Cursor Magnifier</h3>
+                    <p class="sstc-menu-card__note">Activate a follow-along magnifier to enlarge content beneath the cursor.</p>
+                    <div class="sstc-menu-card__control">
+                        <div class="sstc-toggle-switch sstc-clickable" data-action="toggleMagnifier" role="switch" aria-label="Toggle cursor magnifier">
+                            <div class="sstc-toggle-slider"></div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Pause Animations -->
+                <section class="sstc-menu-card">
+                    <div class="sstc-menu-card__icon"><i class="bi bi-pause-circle"></i></div>
+                    <h3 class="sstc-menu-card__title">Pause Animations</h3>
+                    <p class="sstc-menu-card__note">Stop motion effects and transitions that may be distracting or trigger discomfort.</p>
+                    <div class="sstc-menu-card__control">
+                        <div class="sstc-toggle-switch sstc-clickable" data-action="toggleAnimations" role="switch" aria-label="Toggle animation pause">
+                            <div class="sstc-toggle-slider"></div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Hide Images -->
+                <section class="sstc-menu-card">
+                    <div class="sstc-menu-card__icon"><i class="bi bi-image"></i></div>
+                    <h3 class="sstc-menu-card__title">Hide Images</h3>
+                    <p class="sstc-menu-card__note">Temporarily remove decorative images to keep focus on the written content.</p>
+                    <div class="sstc-menu-card__control">
+                        <div class="sstc-toggle-switch sstc-clickable" data-action="toggleHideImages" role="switch" aria-label="Toggle hide images">
+                            <div class="sstc-toggle-slider"></div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Virtual Keyboard -->
+                <section class="sstc-menu-card">
+                    <div class="sstc-menu-card__icon"><i class="bi bi-keyboard"></i></div>
+                    <h3 class="sstc-menu-card__title">Virtual Keyboard</h3>
+                    <p class="sstc-menu-card__note">Use an on-screen keyboard for easier typing.</p>
+                    <div class="sstc-menu-card__control">
+                        <div class="sstc-toggle-switch sstc-clickable" data-action="toggleVirtualKeyboard" role="switch" aria-label="Toggle virtual keyboard">
+                            <div class="sstc-toggle-slider"></div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <button class="sstc-reset-btn sstc-clickable" data-action="reset" aria-label="Reset accessibility settings">
+                <i class="bi bi-arrow-counterclockwise me-2"></i>Reset Settings
+            </button>
+        </div>
+    </aside>
+
+    <!-- Virtual Keyboard -->
+    <div class="sstc-virtual-keyboard" id="sstcVirtualKeyboard" data-acc-ignore-magnifier="1" aria-hidden="true">
+        <div class="sstc-virtual-keyboard__inner">
+            <div class="sstc-virtual-keyboard__top">
+                <div>
+                    <p class="sstc-virtual-keyboard__title mb-1"><i class="bi bi-keyboard me-2"></i>Virtual Keyboard</p>
+                    <p class="sstc-virtual-keyboard__subtitle mb-0">Tap the keys to type into the focused field.</p>
+                </div>
+                <div class="sstc-virtual-keyboard__actions">
+                    <button type="button" class="sstc-virtual-keyboard__action" data-action="virtualClear" aria-label="Clear current field">
+                        <i class="bi bi-eraser-fill"></i>
+                    </button>
+                    <button type="button" class="sstc-virtual-keyboard__action" data-action="closeVirtualKeyboard" aria-label="Hide virtual keyboard">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="sstc-virtual-keyboard__rows" role="group" aria-label="Virtual keyboard">
+                <div class="sstc-virtual-keyboard__row">
+                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="1">1</button>
+                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="2">2</button>
+                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="3">3</button>
+                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="4">4</button>
+                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="5">5</button>
+                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="6">6</button>
+                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="7">7</button>
+                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="8">8</button>
+                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="9">9</button>
+                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="0">0</button>
+                    <button type="button" class="sstc-virtual-keyboard__key sstc-virtual-keyboard__key--control" data-action="virtualBackspace" aria-label="Backspace">
+                        <i class="bi bi-backspace"></i>
+                    </button>
+                </div>
+                <div class="sstc-virtual-keyboard__row">
+                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="q">q</button>
+                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="w">w</button>
+                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="e">e</button>
+                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="r">r</button>
+                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="t">t</button>
+                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="y">y</button>
+                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="u">u</button>
+                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="i">i</button>
+                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="o">o</button>
+                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="p">p</button>
+                </div>
+                <div class="sstc-virtual-keyboard__row">
+                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="a">a</button>
+                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="s">s</button>
+                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="d">d</button>
+                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="f">f</button>
+                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="g">g</button>
+                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="h">h</button>
+                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="j">j</button>
+                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="k">k</button>
+                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="l">l</button>
+                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="'">'</button>
+                </div>
+                <div class="sstc-virtual-keyboard__row">
+                    <button type="button" class="sstc-virtual-keyboard__key sstc-virtual-keyboard__key--control" data-action="virtualShift" aria-label="Toggle shift">Shift</button>
+                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="z">z</button>
+                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="x">x</button>
+                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="c">c</button>
+                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="v">v</button>
+                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="b">b</button>
+                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="n">n</button>
+                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key="m">m</button>
+                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key=",">,</button>
+                    <button type="button" class="sstc-virtual-keyboard__key" data-action="virtualKey" data-key=".">.</button>
+                </div>
+                <div class="sstc-virtual-keyboard__row">
+                    <button type="button" class="sstc-virtual-keyboard__key sstc-virtual-keyboard__key--space" data-action="virtualSpace" aria-label="Space">Space</button>
+                    <button type="button" class="sstc-virtual-keyboard__key sstc-virtual-keyboard__key--control" data-action="virtualEnter" aria-label="Enter">Enter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <!-- Bootstrap JS (optional, needed for modal if you use feedback) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- ResponsiveVoice.js (optional, needed for Voice Mode) -->
+    <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
+    <!-- jr-accessibility JS -->
+    <script src="../public/assets/jr-accessibility/js/script.js"></script>
+
+</body>
+</html>
