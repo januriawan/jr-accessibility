@@ -209,6 +209,7 @@ body { top: 0 !important; }
 
 .jr-menu-header {
     padding: 20px;
+    background: #1053d5;
     border-bottom: 1px solid #eee;
     display: flex;
     justify-content: space-between;
@@ -216,25 +217,52 @@ body { top: 0 !important; }
 }
 
 .jr-menu-header h2 {
-    color: #2c3e50;
-    font-size: 1.4rem
+    color: #fff;
+    font-size: 1.4rem;
+    margin-bottom: 0;
 }
 
 .jr-close-btn {
     width: 30px;
     height: 30px;
-    background: #1053d5;
+    background: #0d4ac0;
     border: none;
     border-radius: 50%;
     color: #fff;
     cursor: pointer;
-    font-size: 16px
+    font-size: 16px;
+}
+
+.jr-menu-item-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    background-color: #f7f9ff;
+    border-bottom: 1px solid rgba(16, 83, 213, 0.08);
+}
+
+.jr-menu-item-toggle__label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    flex-grow: 1;
+}
+
+.jr-menu-item-toggle__icon {
+    font-size: 1.2rem;
+    color: #1053d5;
+}
+
+.jr-menu-item-toggle__text {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1b2444;
 }
 
 .jr-menu-content {
     padding: 20px;
-    padding-top: 5px;
-    padding-bottom: 5px;
 }
 
 .jr-menu-grid {
@@ -279,6 +307,11 @@ body { top: 0 !important; }
     line-height: 1.5;
     color: #5d6d8a;
     margin-bottom: 12px;
+}
+
+/* When "Hide Descriptions" is enabled, hide all note paragraphs inside the accessibility menu */
+.jr-accessibility-menu.jr-hide-description .jr-menu-card__note {
+    display: none;
 }
 
 .jr-menu-card__control {
@@ -468,6 +501,26 @@ body { top: 0 !important; }
 
 .jr-reset-btn:hover {
     background: #4C5ED6
+}
+
+.jr-menu-footer {
+    text-align: center;
+    padding: 12px 20px;
+    font-size: 0.8rem;
+    background-color: #f5f5f5;
+    border-top: 1px solid #e0e0e0;
+}
+
+.jr-menu-footer__link {
+    color: #666;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.jr-menu-footer__link:hover {
+    color: #1053d5;
 }
 
 /* Overlay */

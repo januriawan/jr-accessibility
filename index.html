@@ -132,8 +132,18 @@
     <!-- Accessibility Menu Drawer -->
     <aside class="jr-accessibility-menu" role="dialog" aria-modal="true" aria-label="Accessibility Menu">
         <div class="jr-menu-header">
-            <h2>Accessibility Menu</h2>
+            <h2><i class="bi bi-person-wheelchair me-2"></i>Accessibility Menu</h2>
             <button class="jr-close-btn jr-clickable" data-action="closeMenu" aria-label="Close accessibility menu"><i class="bi bi-x"></i></button>
+        </div>
+        <!-- Hide Descriptions (below header) -->
+        <div class="jr-menu-item-toggle">
+            <label class="jr-menu-item-toggle__label">
+                <i class="bi bi-eye-slash jr-menu-item-toggle__icon"></i>
+                <span class="jr-menu-item-toggle__text">Hide Descriptions</span>
+            </label>
+            <span class="jr-toggle-switch jr-clickable" data-action="toggleHideDescription" role="switch" aria-label="Toggle hide descriptions">
+                <span class="jr-toggle-slider"></span>
+            </span>
         </div>
         <div class="jr-menu-content">
             <!-- Google Translate Widget -->
@@ -367,7 +377,13 @@
             <button class="jr-reset-btn jr-clickable" data-action="reset" aria-label="Reset accessibility settings">
                 <i class="bi bi-arrow-counterclockwise me-2"></i>Reset Settings
             </button>
-        </div>
+        </div> <!-- End of jr-menu-content -->
+
+        <footer class="jr-menu-footer">
+            <a class="jr-menu-footer__link" href="https://github.com/januriawan/jr-accessibility" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-github me-1"></i>© jr-accessibility
+            </a>
+        </footer>
     </aside>
 
     <!-- Virtual Keyboard -->

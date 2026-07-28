@@ -42,7 +42,8 @@
         animationsDisabled: false,
         hideImages: false,
         magnifyMode: false,
-        virtualKeyboard: false
+        virtualKeyboard: false,
+        hideDescription: false
     };
 
     function loadState() {
@@ -73,6 +74,77 @@
     const NON_TEXT_INPUT_TYPES = new Set(['button', 'submit', 'reset', 'checkbox', 'radio', 'hidden', 'color', 'file', 'range']);
     let virtualKeyboardEl = q('#jrVirtualKeyboard');
     let virtualKeyboardShift = false;
+
+    /* ===== Footer Protection =====
+       The jr-menu-footer must always exist inside the accessibility menu
+       and must not be editable/removeable by user scripts. We freeze its
+       attributes so its href/text cannot be tampered with, and a
+       MutationObserver re-inserts it if any script removes it from the DOM.
+    */
+    const FOOTER_TEMPLATE_HTML =
+        '<a class="jr-menu-footer__link" href="https://github.com/januriawan/jr-accessibility" target="_blank" rel="noopener noreferrer">' +
+            '<i class="bi bi-github me-1"></i>© jr-accessibility' +
+        '</a>';
+    const FOOTER_LINK_URL = 'https://github.com/januriawan/jr-accessibility';
+
+    function getFooterEl() {
+        const menu = q('.jr-accessibility-menu');
+        if (!menu) return null;
+        return menu.querySelector(':scope > footer.jr-menu-footer');
+    }
+
+    function ensureFooter() {
+        const menu = q('.jr-accessibility-menu');
+        if (!menu) return null;
+
+        let footer = getFooterEl();
+        if (!footer) {
+            footer = document.createElement('footer');
+            footer.className = 'jr-menu-footer';
+            footer.setAttribute('data-jr-protected', 'footer');
+            footer.innerHTML = FOOTER_TEMPLATE_HTML;
+            menu.appendChild(footer);
+        } else {
+            // Re-append to keep it at the very end (in case something moved it)
+            if (footer !== menu.lastElementChild) menu.appendChild(footer);
+        }
+
+        // Freeze footer & link attributes against tampering
+        const link = footer.querySelector('.jr-menu-footer__link');
+        if (link) {
+            link.setAttribute('href', FOOTER_LINK_URL);
+            link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'noopener noreferrer');
+            link.setAttribute('data-jr-protected', 'footer-link');
+        }
+        return footer;
+    }
+
+    function startFooterProtection() {
+        ensureFooter();
+        const menu = q('.jr-accessibility-menu');
+        if (!menu || menu.__jrFooterObserver) return;
+        const observer = new MutationObserver((mutations) => {
+            for (const m of mutations) {
+                // If the footer was removed, re-create it
+                if (m.removedNodes && m.removedNodes.length) {
+                    for (const node of m.removedNodes) {
+                        if (node.nodeType === 1 && node.classList && node.classList.contains('jr-menu-footer')) {
+                            ensureFooter();
+                            return;
+                        }
+                    }
+                }
+                // If href was tampered with, restore it
+                const link = menu.querySelector('.jr-menu-footer__link');
+                if (link && link.getAttribute('href') !== FOOTER_LINK_URL) {
+                    link.setAttribute('href', FOOTER_LINK_URL);
+                }
+            }
+        });
+        observer.observe(menu, { childList: true, subtree: true, attributes: true, attributeFilter: ['href', 'target', 'rel'] });
+        menu.__jrFooterObserver = observer;
+    }
     let lastEditableElement = null;
 
     function isImageSrcFormat(src = '') {
@@ -651,6 +723,10 @@
         setToggle(q('[data-action="toggleHideImages"]'), state.hideImages);
         setToggle(q('[data-action="toggleMagnifier"]'), state.magnifyMode);
         setToggle(q('[data-action="toggleVirtualKeyboard"]'), state.virtualKeyboard);
+        setToggle(q('[data-action="toggleHideDescription"]'), state.hideDescription);
+
+        const menuEl = q('.jr-accessibility-menu');
+        if (menuEl) menuEl.classList.toggle('jr-hide-description', !!state.hideDescription);
 
         scope.removeEventListener('mousemove', moveGuide);
         if (state.readingGuide) scope.addEventListener('mousemove', moveGuide);
@@ -674,6 +750,9 @@
         else deactivateMagnifier();
 
         updateVirtualKeyboardVisibility(state.virtualKeyboard);
+
+        // Protect footer — always present, cannot be removed or tampered
+        ensureFooter();
     }
 
     /* ===== Features (global) ===== */
@@ -817,6 +896,14 @@
 
     function toggleVirtualShift() { setVirtualKeyboardShift(!virtualKeyboardShift); }
 
+    function toggleHideDescription() {
+        state.hideDescription = !state.hideDescription;
+        const menuEl = q('.jr-accessibility-menu');
+        if (menuEl) menuEl.classList.toggle('jr-hide-description', state.hideDescription);
+        setToggle(q('[data-action="toggleHideDescription"]'), state.hideDescription);
+        saveState();
+    }
+
     function handleVirtualKeyInput(key) {
         if (!key) return;
         const target = ensureEditableTargetFocus();
@@ -897,8 +984,13 @@
         const lv = q('[data-role="lineHeightValue"]'); if (lv) lv.textContent = '1.6x';
 
         qa('.jr-toggle-switch').forEach(t => t.classList.remove('jr-active'));
+        const menuEl = q('.jr-accessibility-menu');
+        if (menuEl) menuEl.classList.remove('jr-hide-description');
         setGroupActive('[data-group="spacing"]', 'normal');
         setGroupActive('[data-group="align"]', 'left');
+
+        // Ensure footer is protected after reset
+        ensureFooter();
 
         try { localStorage.removeItem(STORAGE_KEY); } catch { }
 
@@ -934,6 +1026,7 @@
             case 'toggleHideImages': toggleHideImages(); break;
             case 'toggleMagnifier': toggleMagnifier(); break;
             case 'toggleVirtualKeyboard': toggleVirtualKeyboard(); break;
+            case 'toggleHideDescription': toggleHideDescription(); break;
             case 'closeVirtualKeyboard': closeVirtualKeyboard(); break;
             case 'virtualShift': toggleVirtualShift(); break;
             case 'virtualBackspace': handleVirtualBackspace(); break;
@@ -959,6 +1052,7 @@
     document.addEventListener('DOMContentLoaded', () => {
         if (typeof responsiveVoice === 'undefined') console.warn('[jr-accessibility] ResponsiveVoice not loaded');
         applyState({ initial: true });
+        startFooterProtection();
     });
 
     window.addEventListener('beforeunload', () => {
