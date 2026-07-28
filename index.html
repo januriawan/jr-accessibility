@@ -95,6 +95,31 @@
                 </div>
 
                 <hr class="my-5">
+
+                <!-- Demo Virtual Keyboard -->
+                <div class="row g-4 align-items-center mb-5">
+                    <div class="col-md-6 order-md-2">
+                        <div class="demo-card">
+                            <label for="demoKeyboardInput" class="fw-bold d-block mb-2"><i class="bi bi-keyboard text-primary me-2"></i>Type here to test the Virtual Keyboard:</label>
+                            <textarea id="demoKeyboardInput" class="form-control mb-3" rows="4" placeholder="Click here, then toggle Virtual Keyboard from the accessibility menu..."></textarea>
+                            <div class="d-flex gap-2 flex-wrap">
+                                <button type="button" id="demoKeyboardFocusBtn" class="btn btn-outline-primary btn-sm">
+                                    <i class="bi bi-cursor-text me-1"></i>Focus the field
+                                </button>
+                                <button type="button" id="demoKeyboardClearBtn" class="btn btn-outline-secondary btn-sm">
+                                    <i class="bi bi-eraser me-1"></i>Clear
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 order-md-1">
+                        <h3 class="fw-bold">Test: Virtual Keyboard</h3>
+                        <p class="text-muted mb-2">Click the <strong>textarea</strong> above to focus it, then open the accessibility menu and toggle <strong>"Virtual Keyboard"</strong>. An on-screen keyboard will appear that lets you type into the focused field — perfect for users on touch-only devices or with limited physical keyboard access.</p>
+                        <p class="text-muted mb-0"><i class="bi bi-info-circle text-primary me-1"></i> The keyboard supports <strong>Shift</strong>, <strong>Backspace</strong>, <strong>Space</strong>, and <strong>Enter</strong>, and dispatches real keyboard events so it works with any form input.</p>
+                    </div>
+                </div>
+
+                <hr class="my-5">
                 <h2>Try It Now</h2>
                 <p class="text-muted">Look at the <strong>floating buttons</strong> on the left side (desktop) or the <strong>FAB button</strong> in the bottom-left corner (mobile). Hover over paragraphs to test voice mode.</p>
 
